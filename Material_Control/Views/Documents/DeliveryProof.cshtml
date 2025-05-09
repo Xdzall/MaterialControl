@@ -1,0 +1,138 @@
+﻿@model List<Material_Control.Models.InventoryItemModel>
+@{
+    Layout = null;
+    int counter = 1;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Bukti Penyerahan Barang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        .header-table, .info-table, .item-table, .ttd-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+            .item-table th, .item-table td, .info-table th, .info-table td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
+
+            .ttd-table td {
+                border: 1px solid black;
+                height: 50px;
+                text-align: center;
+            }
+
+        .no-border {
+            border: none !important;
+        }
+
+        .section-title {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table class="header-table">
+        <tr>
+            <td style="width: 33%; font-weight: bold; font-size: 20px;">Panasonic</td>
+            <td style="width: 33%; text-align: center; font-weight: bold; font-size: 20px;">BUKTI PENYERAHAN BARANG</td>
+            <td style="width: 33%; text-align: right;">
+                <div>No : 27/AC-DE/III/25</div>
+                <div>Tgl : 30-Apr-25</div>
+            </td>
+        </tr>
+    </table>    
+
+    <div style="margin-bottom: 5px;">
+        PT Panasonic Manufacturing Indonesia<br />
+        Air Conditioner Business Unit
+    </div>
+
+    <div style="text-align: center; margin-bottom: 5px;">
+        Type : Surat Jalan
+    </div>
+
+    <table class="info-table">
+        <tr>
+            <th>No.Order</th>
+            <th>Kode Penjual</th>
+            <th>Nama Penjual</th>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <table class="item-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NAMA BARANG</th>
+                <th>KODE BARANG</th>
+                <th>JUMLAH</th>
+                <th>SATUAN</th>
+                <th>KETERANGAN</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 9; i++)
+            {
+                var item = i < Model.Count ? Model[i] : null;
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@(item?.ItemPart ?? "")</td>
+                    <td>@(item?.CodePart ?? "")</td>
+                    <td>@(item?.Quantity.ToString() ?? "")</td>
+                    <td>@(item != null ? "pcs" : "")</td>
+                    @if (i == 0)
+                    {
+                        <td rowspan="9" style="vertical-align: top;">NG sample for analysis</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="ttd-table" style="margin-top: 10px;">
+        <tr>
+            <td colspan="3" class="section-title">PT PMI - AIR CONDITIONER</td>
+            <td colspan="3" class="section-title">TowaDenki</td>
+        </tr>
+        <tr>
+            <td>Manager</td>
+            <td>Chief</td>
+            <td>PIC</td>
+            <td>Manager</td>
+            <td>Chief</td>
+            <td>PIC</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <div style="margin-top: 10px; font-size: 11px;">
+        1. Warna Putih = Invoice &nbsp;&nbsp;&nbsp;
+        2. Warna Kuning = Security &nbsp;&nbsp;&nbsp;
+        3. Warna Hijau = Gudang &nbsp;&nbsp;&nbsp;
+        4. Warna Biru = Supplier
+    </div>
+</body>
+</html>

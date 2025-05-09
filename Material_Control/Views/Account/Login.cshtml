@@ -1,0 +1,40 @@
+﻿@model Material_Control.Models.UserModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+    ViewData["HideNavbar"] = true;
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form asp-action="Login" method="post">
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label">Username</label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger small"></span>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model?.ErrorMessage))
+        {
+            <div class="alert alert-danger mt-3" role="alert">
+                @Model.ErrorMessage
+            </div>
+        }
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

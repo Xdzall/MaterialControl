@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Select Mode";
+    Layout = "_Layout";
+    ViewData["HideNavbar"] = true;
+}
+
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="border rounded shadow-sm p-5" style="width: 100%; max-width: 700px; text-align: center;">
+        <h2 class="mb-4">Select Mode</h2>
+
+        <div class="d-flex justify-content-center gap-4 flex-wrap">
+            <form asp-action="Index" method="post">
+                <input type="hidden" name="mode" value="FinishedGoods" />
+                <button type="submit" class="btn btn-outline-primary btn-lg">Finished Goods</button>
+            </form>
+
+            <form asp-action="Index" method="post">
+                <input type="hidden" name="mode" value="Parts" />
+                <button type="submit" class="btn btn-outline-success btn-lg">Parts</button>
+            </form>
+
+            <form asp-action="Index" method="post">
+                <input type="hidden" name="mode" value="Materials" />
+                <button type="submit" class="btn btn-outline-warning btn-lg">Material</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿@* @model IEnumerable<Material_Control.Models.InventoryItemModel> *@
+
+@* <h2>Inventory Data</h2> *@
+@* <table class="table"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th>Identification No</th> *@
+@*             <th>Item Part</th> *@
+@*             <th>Code Part</th> *@
+@*             <th>Quantity</th> *@
+@*             <th>Status</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         @foreach (var item in Model) *@
+@*         { *@
+@*             <tr> *@
+@*                 <td>@item.IdentificationNo</td> *@
+@*                 <td>@item.ItemPart</td> *@
+@*                 <td>@item.CodePart</td> *@
+@*                 <td>@item.Quantity</td> *@
+@*                 <td>@item.Status</td> *@
+@*             </tr> *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@

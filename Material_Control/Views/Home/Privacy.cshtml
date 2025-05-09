@@ -1,0 +1,114 @@
+﻿@model List<Material_Control.Models.PendingApproval>
+
+@{
+    ViewData["Title"] = "Pending Approval";
+    var currentMode = Context.Request.Query["mode"].ToString() ?? "FinishedGoods";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="d-flex justify-content-end gap-3 mb-3">
+    <div style="width: 200px;">
+        <input type="date" id="filterDate" class="form-control" />
+    </div>
+    <div style="width: 200px;">
+        <select class="form-select" onchange="location = this.value;">
+            <option disabled selected>Select Category</option>
+            <option value="@Url.Action("Privacy", "Home", new { mode = "FinishedGoods" })" selected="@(currentMode == "FinishedGoods")">Finished Goods</option>
+            <option value="@Url.Action("Privacy", "Home", new { mode = "Parts" })" selected="@(currentMode == "Parts")">Parts</option>
+            <option value="@Url.Action("Privacy", "Home", new { mode = "Materials" })" selected="@(currentMode == "Materials")">Materials</option>
+        </select>
+    </div>
+</div>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No data available for approval.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Identification No</th>
+                <th>Item Part</th>
+                <th>Code Part</th>
+                <th>Quantity</th>
+                <th>Storage Location</th>
+                <th>Purpose</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>PIC</th>
+                <th>Status</th>
+                <th>Request Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="row-@item.IdentificationNo">
+                    <td>@item.IdentificationNo</td>
+                    <td>@item.ItemPart</td>
+                    <td>@item.CodePart</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.StorageLocation</td>
+                    <td>@item.Purpose</td>
+                    <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>@item.CreatedAt.ToString("HH:mm:ss")</td>
+                    <td>@item.PIC</td>
+                    <td id="status-@item.IdentificationNo">@item.Status</td>
+                    <td>@item.RequestType</td>
+                    <td>
+                        <button class="btn btn-success btn-sm"
+                                onclick="approveItem('@item.IdentificationNo')"
+                        @(item.Status == "Approved" ? "disabled" : "")>
+                            Approve
+                        </button>
+                        <button class="btn btn-danger btn-sm"
+                                onclick="rejectItem('@item.IdentificationNo')">
+                            Reject
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section Scripts {
+    <script>
+        const mode = '@currentMode';
+
+                function approveItem(id) {
+            if (!confirm('Are you sure to approve this item?')) return;
+
+            $.post('@Url.Action("Approve", "Inventory")', { id: id, mode: mode }, function (response) {
+                if (response.success) {
+                    $('#status-' + id).text(response.newStatus);
+                    $('#row-' + id + ' button').prop('disabled', true);
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
+            }).fail(function () {
+                alert('Server error occurred while approving.');
+            });
+        }
+
+                document.getElementById('filterDate').addEventListener('change', function () {
+            const selectedDate = this.value;
+            const rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(row => {
+                const dateCell = row.cells[6].textContent.trim();
+                const rowDate = new Date(dateCell).toISOString().split('T')[0];
+                if (!selectedDate || rowDate === selectedDate) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,13 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Submission Success";
+}
+
+<div class="container mt-5 text-center">
+    <h3 class="text-success mb-4">Inventory Item Successfully Submitted!</h3>
+    <p><strong>Generated Identification No:</strong></p>
+    <h4 class="text-primary">@Model</h4>
+
+    <a asp-action="Index" class="btn btn-outline-secondary mt-3">Back to Inventory</a>
+</div>

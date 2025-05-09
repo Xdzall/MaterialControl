@@ -1,0 +1,82 @@
+﻿@model List<Material_Control.Models.InventoryItemModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Inventory Data</h2>
+    <a asp-action="Create" asp-route-mode="@ViewBag.Mode" class="btn btn-success">Add New Inventory Item</a>
+</div>
+
+<div class="d-flex justify-content-end mb-3">
+    <div style="width: 200px;">
+    <select class="form-select" onchange="location = this.value;">
+        <option selected disabled>Select Category</option>
+        <option value="@Url.Action("Index", new { mode = "Finished Goods" })">Finished Goods</option>
+        <option value="@Url.Action("Index", new { mode = "Parts" })">Parts</option>
+        <option value="@Url.Action("Index", new { mode = "Materials" })">Materials</option>
+    </select>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Identification No</th>
+            <th>Item Part</th>
+            <th>Code Part</th>
+            <th>Quantity</th>
+            <th>Storage Location</th>
+            <th>Purpose</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>PIC</th>
+            <th>Status</th>
+            <th>Request Type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdentificationNo</td>
+                <td>@item.ItemPart</td>
+                <td>@item.CodePart</td>
+                <td>@item.Quantity</td>
+                <td>@item.StorageLocation</td>
+                <td>@item.Purpose</td>
+                <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+                <td>@item.CreatedAt.ToString("HH:mm:ss")</td>
+                <td>@item.PIC</td>
+                <td>@item.Status</td>
+                <td>@item.RequestType</td>
+                <td>
+                    <button class="btn btn-success btn-sm" onclick="printQRCode('@item.IdentificationNo')">Print</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function printQRCode(id) {
+        const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent('https://localhost:7032/Home/Create?id=' + id)}&size=200`;
+
+        const printSection = document.createElement("div");
+        printSection.style.textAlign = "center";
+        printSection.innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+
+        const originalBody = document.body.innerHTML;
+        document.body.innerHTML = printSection.outerHTML;
+
+        window.print();
+
+        window.onafterprint = function () {
+            document.body.innerHTML = originalBody;
+            location.reload(); 
+        };
+    }
+</script>
+
