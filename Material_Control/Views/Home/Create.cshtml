@@ -1,240 +1,139 @@
 ﻿@model Material_Control.Models.PendingApproval
 
 @{
-    ViewData["Title"] = "Add New Inventory Item";
+    ViewData["Title"] = "Inventory Item";
 }
 
-<div class="container mt-4">
-    <h3 class="bg-success text-white text-center p-2 rounded">Inventory Item</h3>
+<div class="main-content-card">
+
+    <div class="mb-4">
+        <h2 class="mb-0">@ViewData["Title"]</h2>
+        <p class="text-muted">Create a new item or search for an existing one to update.</p>
+    </div>
 
     <form id="createForm" asp-action="Create" asp-controller="Home" method="post">
         @Html.AntiForgeryToken()
 
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <label for="searchId" class="form-label">Search Identification No</label>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="searchId" class="form-label fw-bold">Search Existing Item</label>
                 <div class="input-group">
-                    <input type="text" id="searchId" class="form-control" placeholder="Enter ID to search">
-                    <button type="button" class="btn btn-primary" onclick="searchIdentificationNo()">Search</button>
+                    <input type="text" id="searchId" class="form-control" placeholder="Enter Identification No to search...">
+                    <button type="button" class="btn btn-primary" onclick="searchIdentificationNo()">
+                        <i class="bi bi-search"></i> Search
+                    </button>
                 </div>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <label asp-for="IdentificationNo" class="form-label">Identification No</label>
-                <input type="text" class="form-control" id="IdentificationNo" name="IdentificationNo" value="@Model.IdentificationNo" readonly />
+        <hr class="my-4">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="IdentificationNo" class="form-label">Identification No</label>
+                    <input type="text" class="form-control" id="IdentificationNo" name="IdentificationNo" value="@Model.IdentificationNo" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ProjectName" class="form-label">Project Name</label>
+                    <input asp-for="ProjectName" class="form-control" />
+                    <span asp-validation-for="ProjectName" class="text-danger"></span>
+                </div>
+
+                @if (ViewBag.Mode != "Finished Goods")
+                {
+                        <div class="mb-3">
+                            <label asp-for="ItemPart" class="form-label">Item Part</label>
+                            <input asp-for="ItemPart" class="form-control" />
+                            <span asp-validation-for="ItemPart" class="text-danger"></span>
+                        </div>
+                }
+
+                @if (ViewBag.Mode == "Finished Goods")
+                {
+                        <div class="mb-3">
+                            <label asp-for="ModelName" class="form-label">Model Name</label>
+                            <input asp-for="ModelName" class="form-control" />
+                            <span asp-validation-for="ModelName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="SP_Number" class="form-label">SP Number</label>
+                            <input asp-for="SP_Number" class="form-control" />
+                            <span asp-validation-for="SP_Number" class="text-danger"></span>
+                        </div>
+                }
+                else
+                {
+                        <div class="mb-3">
+                            <label asp-for="CodePart" class="form-label">Code Part</label>
+                            <input asp-for="CodePart" class="form-control" />
+                            <span asp-validation-for="CodePart" class="text-danger"></span>
+                        </div>
+                }
             </div>
-            <div class="col-md-4">
-                <label asp-for="ProjectName" class="form-label">Project Name</label>
-                <input asp-for="ProjectName" class="form-control" />
-                <span asp-validation-for="ProjectName" class="text-danger"></span>
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Quantity" class="form-label">Quantity</label>
+                    <input asp-for="Quantity" type="number" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="StorageLocation" class="form-label">Storage Location</label>
+                    <select asp-for="StorageLocation" class="form-select">
+                        <option value="" selected disabled>Select Location</option>
+                        <option value="Warehouse Lantai 2">Warehouse Lantai 2</option>
+                        <option value="Warehouse Go - Down">Warehouse Go - Down</option>
+                        <option value="Warehouse Sychro - A">Warehouse Sychro - A</option>
+                        <option value="Warehouse Sychro - B">Warehouse Sychro - B</option>
+                        <option value="Enginering Room">Enginering Room</option>
+                    </select>
+                    <span asp-validation-for="StorageLocation" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Purpose" class="form-label">Purpose</label>
+                    <input asp-for="Purpose" class="form-control" />
+                    <span asp-validation-for="Purpose" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3" id="borrower-field" style="display: none;">
+                    <label asp-for="Borrower" class="form-label">Borrower</label>
+                    <input asp-for="Borrower" class="form-control" />
+                    <span asp-validation-for="Borrower" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PIC" class="form-label">PIC</label>
+                    <input asp-for="PIC" class="form-control" value="@ViewBag.PICName" readonly />
+                </div>
             </div>
-            @if (ViewBag.Mode != "Finished Goods")
-            {
-                    <div class="col-md-4">
-                        <label asp-for="ItemPart" class="form-label">Item Part</label>
-                        <input asp-for="ItemPart" class="form-control" />
-                        <span asp-validation-for="ItemPart" class="text-danger"></span>
-                    </div>
-            }
         </div>
-        <div class="row mb-3">
-            @if (ViewBag.Mode == "Finished Goods")
-            {
-                    <div class="col-md-4">
-                        <label asp-for="ModelName" class="form-label">Model Name</label>
-                        <input asp-for="ModelName" class="form-control" />
-                        <span asp-validation-for="ModelName" class="text-danger"></span>
-                    </div>
-            }
-            else
-            {
-                    <div class="col-md-4">
-                        <label asp-for="CodePart" class="form-label">Code Part</label>
-                        <input asp-for="CodePart" class="form-control" />
-                        <span asp-validation-for="CodePart" class="text-danger"></span>
-                    </div>
-            }
-        </div>
-        <div class="row mb-3">
-            @if (ViewBag.Mode == "Finished Goods")
-            {
-                    <div class="col-md-4">
-                        <label asp-for="SP_Number" class="form-label">SP Number</label>
-                        <input asp-for="SP_Number" class="form-control" />
-                        <span asp-validation-for="SP_Number" class="text-danger"></span>
-                    </div>
-            }
-            <div class="col-md-4">
-                <label asp-for="Quantity" class="form-label">Quantity</label>
-                <input asp-for="Quantity" type="number" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="col-md-4">
-                <label asp-for="StorageLocation" class="form-label">Storage Location</label>
-                <select asp-for="StorageLocation" class="form-select">
-                    <option value="" selected disabled>Select Location</option>
-                    <option value="Wharehouse Lantai 2">Wharehouse Lantai 2</option>
-                    <option value="Wharehouse Go - Down">Wharehouse Go - Down</option>
-                    <option value="Wharehouse Sychro - A">Wharehouse Schro - A</option>
-                    <option value="Wharehouse Sychro - B">Wharehouse Sychro - B</option>
-                    <option value="Engginering Room">Engginering Room</option>
-                </select>
-                <span asp-validation-for="StorageLocation" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <label asp-for="Purpose" class="form-label">Purpose</label>
-                <input asp-for="Purpose" class="form-control" />
-                <span asp-validation-for="Purpose" class="text-danger"></span>
-            </div>
-            <div class="col-md-4">
-                <label asp-for="PIC" class="form-label">PIC</label>
-                <input asp-for="PIC" class="form-control" value="@ViewBag.PICName" readonly />
-            </div>
-            <div class="col-md-4" id="borrower-field" style="display: none;">
-                <label asp-for="Borrower" class="form-label">Borrower</label>
-                <input asp-for="Borrower" class="form-control" />
-                <span asp-validation-for="Borrower" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="mt-3">
+
+        <div class="mt-4 pt-3 border-top">
             <input type="hidden" name="mode" value="@ViewBag.Mode" />
             <input type="hidden" id="RequestType" name="RequestType" />
-            <button type="button" onclick="submitForm('IN')" id="btn-in" class="btn btn-success">IN</button>
-            <button type="button" onclick="submitForm('OUT')" id="btn-out" class="btn btn-danger" disabled>OUT</button>
-            <button type="button" onclick="submitForm('SCRAP')" id="btn-scrap" class="btn btn-warning" disabled>SCRAP</button>
-            <button type="button" onclick="submitForm('Borrowing')" id="btn-borrow" class="btn btn-primary" disabled>Borrowing</button>
-            @* <a asp-action="Index" class="btn btn-secondary ms-2">Back</a> *@
-            <button type="button" onclick="downloadDocument()" class="btn btn-info ms-2" disabled>Download PDF</button>
+
+            <div class="d-flex gap-2">
+                <button type="button" onclick="submitForm('IN')" id="btn-in" class="btn btn-success"><i class="bi bi-box-arrow-in-down"></i> IN</button>
+                <button type="button" onclick="submitForm('OUT')" id="btn-out" class="btn btn-danger" disabled><i class="bi bi-box-arrow-up"></i> OUT</button>
+                <button type="button" onclick="submitForm('SCRAP')" id="btn-scrap" class="btn btn-warning" disabled><i class="bi bi-trash"></i> SCRAP</button>
+                <button type="button" onclick="submitForm('Borrowing')" id="btn-borrow" class="btn btn-primary" disabled><i class="bi bi-people"></i> Borrowing</button>
+                <button type="button" onclick="downloadDocument()" class="btn btn-info ms-auto" disabled><i class="bi bi-file-earmark-pdf"></i> Download PDF</button>
+                 <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
         </div>
     </form>
 </div>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
-
         <script>
-            function submitForm(requestType) {
-                document.getElementById("RequestType").value = requestType;
-                document.getElementById("createForm").submit();
-            }
-
-            function searchIdentificationNo() {
-                // PERBAIKAN: Logika baru untuk mendeteksi mode dari ID
-                const idFromSearchBox = document.getElementById("searchId").value;
-                if (!idFromSearchBox) return;
-
-                let mode = '';
-                if (idFromSearchBox.includes('FG')) {
-                    mode = 'Finished Goods';
-                } else if (idFromSearchBox.includes('P')) {
-                    mode = 'Parts';
-                } else if (idFromSearchBox.includes('M')) {
-                    mode = 'Materials';
-                } else {
-                    alert('Invalid Identification No format.');
-                    return;
-                }
-
-                const currentMode = '@ViewBag.Mode';
-                // Jika mode dari ID tidak sama dengan mode halaman saat ini, muat ulang
-                if (mode !== currentMode) {
-                    window.location.href = `/Home/Create?mode=${encodeURIComponent(mode)}&id=${encodeURIComponent(idFromSearchBox)}`;
-                    return; // Hentikan eksekusi, halaman akan dimuat ulang
-                }
-
-                // Jika mode sudah benar, lanjutkan dengan pencarian data via fetch
-                const params = new URLSearchParams(window.location.search);
-                const idToFetch = idFromSearchBox || params.get("id");
-
-                fetch(`/Home/GetItemById?id=${idToFetch}`)
-                    .then(response => {
-                        if (!response.ok) throw new Error("Item not found or has been rejected.");
-                        return response.json();
-                    })
-                    .then(data => {
-                        // ... (logika pengisian data dan menonaktifkan tombol tetap sama)
-                        document.getElementById("IdentificationNo").value = data.identificationNo || '';
-                        document.querySelector('[name="ProjectName"]').value = data.projectName || '';
-                        const itemPartInput = document.querySelector('[name="ItemPart"]');
-                        if (itemPartInput) itemPartInput.value = data.itemPart || '';
-                        const modelNameInput = document.querySelector('[name="ModelName"]');
-                        if (modelNameInput) modelNameInput.value = data.modelName || '';
-                        const codePartInput = document.querySelector('[name="CodePart"]');
-                        if (codePartInput) codePartInput.value = data.codePart || '';
-                        const spNumberInput = document.querySelector('[name="SP_Number"]');
-                        if (spNumberInput) spNumberInput.value = data.spNumber || '';
-                        document.querySelector('[name="Quantity"]').value = 1; 
-                        document.querySelector('[name="StorageLocation"]').value = data.storageLocation || '';
-                        document.querySelector('[name="Purpose"]').value = data.purpose || '';
-                        document.querySelector('[name="PIC"]').value = data.pic || '';
-
-                        document.querySelector('[name="ProjectName"]').readOnly = true;
-                        if (itemPartInput) itemPartInput.readOnly = true;
-                        if (modelNameInput) modelNameInput.readOnly = true;
-                        if (codePartInput) codePartInput.readOnly = true;
-                        if (spNumberInput) spNumberInput.readOnly = true;
-                        document.querySelector('[name="Quantity"]').readOnly = true;
-                        // document.querySelector('[name="StorageLocation"]').readOnly = true;
-                        document.getElementById("searchId").readOnly = true;
-                        document.querySelector('button[onclick="searchIdentificationNo()"]').disabled = true;
-                        // --- Logika Tombol Baru ---
-                        document.getElementById('btn-in').disabled = true; // Nonaktifkan IN secara default saat search
-                        document.getElementById('borrower-field').style.display = 'block'; // Tampilkan field borrower
-                        document.querySelector('button[onclick="submitForm(\'IN\')"]').disabled = true;
-
-                            if (data.isActionable) {
-                            document.querySelector('[name="Purpose"]').readOnly = false;
-                            document.querySelector('[name="StorageLocation"]').disabled = false;
-                            document.querySelector('[name="Borrower"]').readOnly = false;
-
-                            // Jika barang sedang dipinjam, aktifkan tombol IN untuk pengembalian
-                            if (data.requestType === 'Borrowing') {
-                                document.getElementById('btn-in').disabled = false; 
-                                document.getElementById('btn-out').disabled = true;
-                                document.getElementById('btn-scrap').disabled = true;
-                                document.getElementById('btn-borrow').disabled = true;
-                                 document.querySelector('[name="Borrower"]').value = data.borrower || '';
-                                 document.querySelector('[name="Borrower"]').readOnly = true;
-                            } 
-                            // Jika barang tersedia (status IN), aktifkan tombol OUT, SCRAP, BORROW
-                            else if (data.requestType === 'IN') {
-                                document.getElementById('btn-out').disabled = false;
-                                document.getElementById('btn-scrap').disabled = false;
-                                document.getElementById('btn-borrow').disabled = false;
-                            }
-
-                            document.querySelector('button[onclick="downloadDocument()"]').disabled = false;
-                        } else {
-                            document.querySelector('[name="Purpose"]').readOnly = true;
-                            document.querySelector('[name=StorageLocation]').disabled = false;
-                            document.querySelector('button[onclick="submitForm(\'OUT\')"]').disabled = true;
-                            document.querySelector('button[onclick="submitForm(\'SCRAP\')"]').disabled = true;
-                            document.querySelector('button[onclick="downloadDocument()"]').disabled = true;
-                        }
-                    })
-                    .catch(err => {
-                        alert(err.message);
-                    });
-            }
-
-            // ... (sisa fungsi JavaScript lainnya tidak perlu diubah) ...
+            function submitForm(requestType) { document.getElementById("RequestType").value = requestType; document.getElementById("createForm").submit(); }
+            function searchIdentificationNo() { const idFromSearchBox = document.getElementById("searchId").value; if (!idFromSearchBox) return; let mode = ''; if (idFromSearchBox.includes('FG')) { mode = 'Finished Goods'; } else if (idFromSearchBox.includes('P')) { mode = 'Parts'; } else if (idFromSearchBox.includes('M')) { mode = 'Materials'; } else { alert('Invalid Identification No format.'); return; } const currentMode = '@ViewBag.Mode'; if (mode !== currentMode) { window.location.href = `/Home/Create?mode=${encodeURIComponent(mode)}&id=${encodeURIComponent(idFromSearchBox)}`; return; } const idToFetch = idFromSearchBox; fetch(`/Home/GetItemById?id=${idToFetch}`).then(response => { if (!response.ok) throw new Error("Item not found or has been rejected."); return response.json(); }).then(data => { document.getElementById("IdentificationNo").value = data.identificationNo || ''; document.querySelector('[name="ProjectName"]').value = data.projectName || ''; const itemPartInput = document.querySelector('[name="ItemPart"]'); if (itemPartInput) itemPartInput.value = data.itemPart || ''; const modelNameInput = document.querySelector('[name="ModelName"]'); if (modelNameInput) modelNameInput.value = data.modelName || ''; const codePartInput = document.querySelector('[name="CodePart"]'); if (codePartInput) codePartInput.value = data.codePart || ''; const spNumberInput = document.querySelector('[name="SP_Number"]'); if (spNumberInput) spNumberInput.value = data.spNumber || ''; document.querySelector('[name="Quantity"]').value = 1; document.querySelector('[name="StorageLocation"]').value = data.storageLocation || ''; document.querySelector('[name="Purpose"]').value = data.purpose || ''; document.querySelector('[name="PIC"]').value = data.pic || ''; document.querySelector('[name="ProjectName"]').readOnly = true; if (itemPartInput) itemPartInput.readOnly = true; if (modelNameInput) modelNameInput.readOnly = true; if (codePartInput) codePartInput.readOnly = true; if (spNumberInput) spNumberInput.readOnly = true; document.querySelector('[name="Quantity"]').readOnly = true; document.getElementById("searchId").readOnly = true; document.querySelector('button[onclick="searchIdentificationNo()"]').disabled = true; document.getElementById('btn-in').disabled = true; document.getElementById('borrower-field').style.display = 'block'; if (data.isActionable) { document.querySelector('[name="Purpose"]').readOnly = false; document.querySelector('[name="StorageLocation"]').disabled = false; document.querySelector('[name="Borrower"]').readOnly = false; if (data.requestType === 'Borrowing') { document.getElementById('btn-in').disabled = false; document.getElementById('btn-out').disabled = true; document.getElementById('btn-scrap').disabled = true; document.getElementById('btn-borrow').disabled = true; document.querySelector('[name="Borrower"]').value = data.borrower || ''; document.querySelector('[name="Borrower"]').readOnly = true; } else if (data.requestType === 'IN') { document.getElementById('btn-out').disabled = false; document.getElementById('btn-scrap').disabled = false; document.getElementById('btn-borrow').disabled = false; } document.querySelector('button[onclick="downloadDocument()"]').disabled = false; } else { document.querySelector('[name="Purpose"]').readOnly = true; document.querySelector('[name="StorageLocation"]').disabled = false; document.querySelector('button[onclick="submitForm(\'OUT\')"]').disabled = true; document.querySelector('button[onclick="submitForm(\'SCRAP\')"]').disabled = true; document.querySelector('button[onclick="downloadDocument()"]').disabled = true; } }).catch(err => { alert(err.message); }); }
             function downloadDocument() { const id = document.getElementById("IdentificationNo").value; if (!id) { alert("Please search and fill in the Identification No first."); return; } fetch(`/Documents/DeliveryProof?id=${encodeURIComponent(id)}`).then(response => { if (response.ok) return response.blob(); throw new Error('File not found or error generating file.'); }).then(blob => { const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.style.display = 'none'; a.href = url; a.download = `document_${id}.pdf`; document.body.appendChild(a); a.click(); window.URL.revokeObjectURL(url); }).catch(error => alert('Error downloading file: ' + error.message)); }
-            function hasQueryParams(url) { try { const parsedUrl = new URL(url); return parsedUrl.search.length > 1; } catch (error) { return false; } }
-            function searchIdWhenLoaded() {
-                // Logika ini akan berjalan setelah halaman dimuat ulang dengan mode & id yang benar
-                const params = new URLSearchParams(window.location.search);
-                const id = params.get("id");
-                if (id) {
-                    document.getElementById("searchId").value = id;
-                    searchIdentificationNo();
-                }
-            }
-            window.onload = function() {
-                searchIdWhenLoaded();
-            }
+            window.onload = function() { const params = new URLSearchParams(window.location.search); const id = params.get("id"); if (id) { document.getElementById("searchId").value = id; searchIdentificationNo(); } }
         </script>
 }

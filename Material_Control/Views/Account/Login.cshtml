@@ -3,38 +3,71 @@
 @{
     ViewData["Title"] = "Login";
     Layout = "_Layout";
-    ViewData["HideNavbar"] = true;
+    ViewData["HideNavbar"] = true; /* Pastikan Navbar tersembunyi untuk halaman login */
 }
 
-<div class="container mt-5" style="max-width: 500px;">
-    <h2 class="text-center mb-4">Login</h2>
+<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+
+<div class="login-card">
+    <div class="login-header">
+        <h2>Material Control</h2>
+        <p>Please login to continue</p>
+    </div>
 
     <form asp-action="Login" method="post">
+
+        @if (!ViewData.ModelState.IsValid && ViewData.ModelState[""] != null)
+        {
+                <div class="alert alert-danger" role="alert">
+                @ViewData.ModelState[""].Errors.First().ErrorMessage
+                </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model?.ErrorMessage))
+        {
+                <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+                </div>
+        }
+
         <div class="mb-3">
-            <label asp-for="Username" class="form-label">Username</label>
-            <input asp-for="Username" class="form-control" />
+            <input asp-for="Username" class="form-control" placeholder="Username" />
             <span asp-validation-for="Username" class="text-danger small"></span>
         </div>
 
-        <div class="mb-3">
-            <label asp-for="Password" class="form-label">Password</label>
-            <input asp-for="Password" type="password" class="form-control" />
+        <div class="password-container mb-4">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Password" id="password-field" />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
             <span asp-validation-for="Password" class="text-danger small"></span>
         </div>
 
         <div class="d-grid">
             <button type="submit" class="btn btn-primary">Login</button>
         </div>
-
-        @if (!string.IsNullOrEmpty(Model?.ErrorMessage))
-        {
-            <div class="alert alert-danger mt-3" role="alert">
-                @Model.ErrorMessage
-            </div>
-        }
     </form>
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial" />
+            <link rel="stylesheet" href="~/lib/bootstrap-icons/bootstrap-icons.css" asp-append-version="true" />
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const togglePassword = document.querySelector('#togglePassword');
+                const password = document.querySelector('#password-field');
+
+                if (togglePassword) {
+                    togglePassword.addEventListener('click', function (e) {
+                        // Mengubah tipe atribut input
+                        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                        password.setAttribute('type', type);
+
+                        // Mengganti ikon mata
+                        this.classList.toggle('bi-eye');
+                        this.classList.toggle('bi-eye-slash');
+                    });
+                }
+            });
+        </script>
 }

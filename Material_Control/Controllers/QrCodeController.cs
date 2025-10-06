@@ -9,7 +9,6 @@ using System.IO;
 public class QrCodeController : Controller
 {
     [HttpGet]
-    // PERBAIKAN: Mengubah nama parameter agar lebih generik
     public IActionResult Generate(string id, string projectName, string itemPartOrModel, string codeOrSp, string quantity, string location, string pic)
     {
         if (string.IsNullOrEmpty(id))
@@ -49,7 +48,7 @@ public class QrCodeController : Controller
         using (Graphics g = Graphics.FromImage(newBitmap))
         {
             g.Clear(Color.White);
-            g.DrawImage(qrImage, new Point(10, 30));
+            g.DrawImage(qrImage, new Point(10, 10));
 
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -60,7 +59,7 @@ public class QrCodeController : Controller
             SolidBrush textBrush = new SolidBrush(Color.Black);
 
             float textX = qrImage.Width + 40;
-            float yPos = 58;
+            float yPos = 40;
 
             // --- PERBAIKAN: Logika Tampilan Teks ---
             string p1, p2;

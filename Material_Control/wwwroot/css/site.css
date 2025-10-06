@@ -1,22 +1,79 @@
+/* wwwroot/css/site.css */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    padding-top: 70px;
+    margin-bottom: 60px;
+    background-color: #f4f7f6; /* Latar belakang abu-abu lembut */
 }
+
+/* Kustomisasi Navbar */
+.navbar-brand {
+    color: #0d6efd !important;
+}
+
+.navbar .nav-link {
+    transition: all 0.2s ease-in-out;
+}
+
+    .navbar .nav-link:hover {
+        color: #0d6efd !important;
+        transform: translateY(-2px);
+    }
+
+/* Card untuk Konten Utama */
+.main-content-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: none;
+}
+
+/* Styling Tabel */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1rem;
+}
+
+    .table thead th {
+        background-color: #e9ecef;
+        color: #495057;
+        font-weight: 600;
+        border-top: none;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+/* Kontrol Paginasi */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+    .pagination-controls .page-info {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }

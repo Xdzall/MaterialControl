@@ -2,119 +2,133 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Pending Approval";
-    var currentMode = ViewBag.Mode ?? "Finished Goods"; // Menggunakan ViewBag.Mode
+    var currentMode = ViewBag.Mode ?? "Finished Goods";
     var userRole = HttpContextAccessor.HttpContext.Session.GetString("Role");
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="main-content-card">
 
-<div class="d-flex justify-content-end gap-3 mb-3">
-    <div style="width: 200px;">
-        <label for="filterDate" class="form-label">Filter by Date</label>
-        <input type="date" id="filterDate" class="form-control" />
-    </div>
-    <div style="width: 200px;">
-        <label class="form-label">Select Category</label>
-        <select class="form-select" onchange="location = this.value;">
-            <option value="@Url.Action("Privacy", "Home", new { mode = "Finished Goods" })" selected="@(currentMode == "Finished Goods")">Finished Goods</option>
-            <option value="@Url.Action("Privacy", "Home", new { mode = "Parts" })" selected="@(currentMode == "Parts")">Parts</option>
-            <option value="@Url.Action("Privacy", "Home", new { mode = "Materials" })" selected="@(currentMode == "Materials")">Materials</option>
-        </select>
-    </div>
-</div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-0">@ViewData["Title"]</h2>
+            <p class="text-muted mb-0">Review and manage pending item requests.</p>
+        </div>
 
-@if (Model == null || !Model.Any())
-{
-        <p>No data available for approval.</p>
-}
-else
-{
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Identification No</th>
-                    <th>Project Name</th>
-                @if (currentMode == "Finished Goods")
-                {
-                            <th>Model Name</th>
-                            <th>SP_Number</th>
-                }
-                else
-                {
-                            <th>Item Part</th>
-                            <th>Code Part</th>
-                }
-                    <th>Quantity</th>
-                    <th>Storage Location</th>
-                    <th>Purpose</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>PIC</th>
-                    <th>Status</th>
-                    <th>Request Type</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model)
-            {
-                        <tr id="row-@item.IdentificationNo">
-                            <td>@item.IdentificationNo</td>
-                            <td>@item.ProjectName</td>
-                    @if (currentMode == "Finished Goods")
-                    {
-                                    <td>@item.ModelName</td>
-                                    <td>@item.SP_Number</td>
-                    }
-                    else
-                    {
-                                    <td>@item.ItemPart</td>
-                                    <td>@item.CodePart</td>
-                    }
-                            <td>@item.Quantity</td>
-                            <td>@item.StorageLocation</td>
-                            <td>@item.Purpose</td>
-                            <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
-                            <td>@item.CreatedAt.ToString("HH:mm:ss")</td>
-                            <td>@item.PIC</td>
-                            <td id="status-@item.IdentificationNo">@item.Status</td>
-                            <td>@item.RequestType</td>
-                            <td>
-                        @{
-                            bool canApprove = (userRole == "Admin" && item.Status == "Pending at Admin") ||
-                                              (userRole == "Super Admin" && item.Status == "Pending at Super Admin");
-                            bool canReject = canApprove;
-                            bool isStaff = userRole == "Staff";
+        <div class="d-flex align-items-end gap-3">
+            <div style="width: 250px;">
+                <label for="filterDate" class="form-label">Filter by Date</label>
+                <input type="date" id="filterDate" class="form-control" />
+            </div>
+            <div style="width: 250px;">
+                <label class="form-label">Select Category</label>
+                <select class="form-select" onchange="location = this.value;">
+                    <option value="@Url.Action("Privacy", "Home", new { mode = "Finished Goods" })" selected="@(currentMode == "Finished Goods")">Finished Goods</option>
+                    <option value="@Url.Action("Privacy", "Home", new { mode = "Parts" })" selected="@(currentMode == "Parts")">Parts</option>
+                    <option value="@Url.Action("Privacy", "Home", new { mode = "Materials" })" selected="@(currentMode == "Materials")">Materials</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+            <div class="alert alert-info" role="alert">
+                No data available for approval.
+            </div>
+    }
+    else
+    {
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Identification No</th>
+                            <th>Project Name</th>
+                        @if (currentMode == "Finished Goods")
+                        {
+                                    <th>Model Name</th>
+                                    <th>SP_Number</th>
                         }
-                                <button class="btn btn-success btn-sm"
-                                        onclick="approveItem('@item.IdentificationNo')"
-                        @(canApprove && !isStaff ? "" : "disabled")>
-                                    Approve
-                                </button>
-                                <button class="btn btn-danger btn-sm"
-                                        onclick="rejectItem('@item.IdentificationNo')"
-                        @(canReject && !isStaff ? "" : "disabled")>
-                                    Reject
-                                </button>
-                            </td>
+                        else
+                        {
+                                    <th>Item Part</th>
+                                    <th>Code Part</th>
+                        }
+                            <th>Qty</th>
+                            <th>Location</th>
+                            <th>Purpose</th>
+                            <th>PIC</th>
+                            <th>Status</th>
+                            <th>Request</th>
+                            <th>Action</th>
                         </tr>
-            }
-            </tbody>
-        </table>
-}
+                    </thead>
+                    <tbody id="approval-table-body">
+                    @foreach (var item in Model)
+                    {
+                                <tr id="row-@item.IdentificationNo">
+                                    <td>@item.IdentificationNo</td>
+                                    <td>@item.ProjectName</td>
+                            @if (currentMode == "Finished Goods")
+                            {
+                                            <td>@item.ModelName</td>
+                                            <td>@item.SP_Number</td>
+                            }
+                            else
+                            {
+                                            <td>@item.ItemPart</td>
+                                            <td>@item.CodePart</td>
+                            }
+                                    <td>@item.Quantity</td>
+                                    <td>@item.StorageLocation</td>
+                                    <td>@item.Purpose</td>
+                                    <td>@item.PIC</td>
+                                    <td id="status-@item.IdentificationNo">
+                                        <span class="badge bg-warning text-dark">@item.Status</span>
+                                    </td>
+                                    <td>@item.RequestType</td>
+                                    <td>
+                                @{
+                                    bool canApprove = (userRole == "Admin" && item.Status == "Pending at Admin") || (userRole == "Super Admin" && item.Status == "Pending at Super Admin");
+                                    bool isStaff = userRole == "Staff";
+                                }
+                                        <div class="btn-group" role="group">
+                                             <button class="btn btn-success btn-sm" onclick="approveItem('@item.IdentificationNo')" @(canApprove && !isStaff ? "" : "disabled")>
+                                                <i class="bi bi-check-lg"></i> Approve
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="rejectItem('@item.IdentificationNo')" @(canApprove && !isStaff ? "" : "disabled")>
+                                                <i class="bi bi-x-lg"></i> Reject
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination-controls">
+                <span class="page-info" id="page-info"></span>
+                <div>
+                    <button class="btn btn-outline-secondary" id="prev-page" disabled>Previous</button>
+                    <button class="btn btn-outline-secondary" id="next-page">Next</button>
+                </div>
+            </div>
+    }
+</div>
 
 @section Scripts {
         <script>
             const mode = '@currentMode';
 
             function approveItem(id) {
-                if (!confirm('Are you sure to approve this item?')) return;
+                if (!confirm('Are you sure you want to approve this item?')) return;
                 $.post('@Url.Action("Approve", "Inventory")', { id: id, mode: mode }, function (response) {
                     if (response.success) {
-                        $('#status-' + id).text(response.newStatus);
                         if (response.newStatus === 'Approved') {
                             $('#row-' + id).fadeOut(500, function() { $(this).remove(); });
                         } else {
+                            $('#status-' + id).html(`<span class="badge bg-info text-dark">${response.newStatus}</span>`);
                             $('#row-' + id + ' button').prop('disabled', true);
                         }
                         alert(response.message);
@@ -127,7 +141,7 @@ else
             }
 
             function rejectItem(id) {
-                if (!confirm('Are you sure to reject this item?')) return;
+                if (!confirm('Are you sure you want to reject this item?')) return;
                 $.post('@Url.Action("Reject", "Inventory")', { id: id, mode: mode }, function (response) {
                     if (response.success) {
                         $('#row-' + id).fadeOut(500, function() { $(this).remove(); });
@@ -140,7 +154,55 @@ else
                 });
             }
 
-            document.getElementById('filterDate').addEventListener('change', function () {
+            // --- SKRIP PAGINASI ---
+            document.addEventListener('DOMContentLoaded', function () {
+                const rowsPerPage = 10;
+                const tableBody = document.getElementById('approval-table-body');
+                if (!tableBody) return; // Keluar jika tabel tidak ada
+
+                const allRows = Array.from(tableBody.querySelectorAll('tr'));
+                const totalRows = allRows.length;
+                const totalPages = Math.ceil(totalRows / rowsPerPage);
+                let currentPage = 1;
+
+                const prevButton = document.getElementById('prev-page');
+                const nextButton = document.getElementById('next-page');
+                const pageInfo = document.getElementById('page-info');
+
+                function showPage(page) {
+                    const startIndex = (page - 1) * rowsPerPage;
+                    const endIndex = startIndex + rowsPerPage;
+                    allRows.forEach(row => row.style.display = 'none');
+                    allRows.slice(startIndex, endIndex).forEach(row => row.style.display = '');
+                    updatePaginationControls();
+                }
+
+                function updatePaginationControls() {
+                    prevButton.disabled = currentPage === 1;
+                    nextButton.disabled = currentPage === totalPages || totalRows === 0;
+                    const startItem = totalRows > 0 ? (currentPage - 1) * rowsPerPage + 1 : 0;
+                    const endItem = Math.min(currentPage * rowsPerPage, totalRows);
+                    pageInfo.textContent = totalRows > 0 ? `Showing ${startItem} to ${endItem} of ${totalRows} entries` : 'No entries found';
+                }
+
+                prevButton.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        showPage(currentPage);
+                    }
+                });
+
+                nextButton.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        showPage(currentPage);
+                    }
+                });
+
+                showPage(currentPage);
+            });
+
+                document.getElementById('filterDate').addEventListener('change', function () {
                 const selectedDate = this.value;
                 const rows = document.querySelectorAll('tbody tr');
 
