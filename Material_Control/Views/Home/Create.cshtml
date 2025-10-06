@@ -10,7 +10,6 @@
     <form id="createForm" asp-action="Create" asp-controller="Home" method="post">
         @Html.AntiForgeryToken()
 
-        @* ... (Sisa kode HTML form Anda tetap sama) ... *@
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="searchId" class="form-label">Search Identification No</label>
@@ -95,13 +94,19 @@
                 <label asp-for="PIC" class="form-label">PIC</label>
                 <input asp-for="PIC" class="form-control" value="@ViewBag.PICName" readonly />
             </div>
+            <div class="col-md-4" id="borrower-field" style="display: none;">
+                <label asp-for="Borrower" class="form-label">Borrower</label>
+                <input asp-for="Borrower" class="form-control" />
+                <span asp-validation-for="Borrower" class="text-danger"></span>
+            </div>
         </div>
         <div class="mt-3">
             <input type="hidden" name="mode" value="@ViewBag.Mode" />
             <input type="hidden" id="RequestType" name="RequestType" />
-            <button type="button" onclick="submitForm('IN')" class="btn btn-success">IN</button>
-            <button type="button" onclick="submitForm('OUT')" class="btn btn-danger" disabled>OUT</button>
-            <button type="button" onclick="submitForm('SCRAP')" class="btn btn-warning" disabled>SCRAP</button>
+            <button type="button" onclick="submitForm('IN')" id="btn-in" class="btn btn-success">IN</button>
+            <button type="button" onclick="submitForm('OUT')" id="btn-out" class="btn btn-danger" disabled>OUT</button>
+            <button type="button" onclick="submitForm('SCRAP')" id="btn-scrap" class="btn btn-warning" disabled>SCRAP</button>
+            <button type="button" onclick="submitForm('Borrowing')" id="btn-borrow" class="btn btn-primary" disabled>Borrowing</button>
             @* <a asp-action="Index" class="btn btn-secondary ms-2">Back</a> *@
             <button type="button" onclick="downloadDocument()" class="btn btn-info ms-2" disabled>Download PDF</button>
         </div>
@@ -176,14 +181,32 @@
                         // document.querySelector('[name="StorageLocation"]').readOnly = true;
                         document.getElementById("searchId").readOnly = true;
                         document.querySelector('button[onclick="searchIdentificationNo()"]').disabled = true;
-
+                        // --- Logika Tombol Baru ---
+                        document.getElementById('btn-in').disabled = true; // Nonaktifkan IN secara default saat search
+                        document.getElementById('borrower-field').style.display = 'block'; // Tampilkan field borrower
                         document.querySelector('button[onclick="submitForm(\'IN\')"]').disabled = true;
 
-                        if (data.isActionable) {
+                            if (data.isActionable) {
                             document.querySelector('[name="Purpose"]').readOnly = false;
-                            document.querySelector('button[onclick="submitForm(\'OUT\')"]').disabled = false;
-                            document.querySelector('[name="StorageLocation"]').disabled = false
-                            document.querySelector('button[onclick="submitForm(\'SCRAP\')"]').disabled = false;
+                            document.querySelector('[name="StorageLocation"]').disabled = false;
+                            document.querySelector('[name="Borrower"]').readOnly = false;
+
+                            // Jika barang sedang dipinjam, aktifkan tombol IN untuk pengembalian
+                            if (data.requestType === 'Borrowing') {
+                                document.getElementById('btn-in').disabled = false; 
+                                document.getElementById('btn-out').disabled = true;
+                                document.getElementById('btn-scrap').disabled = true;
+                                document.getElementById('btn-borrow').disabled = true;
+                                 document.querySelector('[name="Borrower"]').value = data.borrower || '';
+                                 document.querySelector('[name="Borrower"]').readOnly = true;
+                            } 
+                            // Jika barang tersedia (status IN), aktifkan tombol OUT, SCRAP, BORROW
+                            else if (data.requestType === 'IN') {
+                                document.getElementById('btn-out').disabled = false;
+                                document.getElementById('btn-scrap').disabled = false;
+                                document.getElementById('btn-borrow').disabled = false;
+                            }
+
                             document.querySelector('button[onclick="downloadDocument()"]').disabled = false;
                         } else {
                             document.querySelector('[name="Purpose"]').readOnly = true;

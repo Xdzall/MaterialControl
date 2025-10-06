@@ -34,7 +34,6 @@ else
                 <tr>
                     <th>Identification No</th>
                     <th>Project Name</th>
-                    <th>Item Part</th>
                 @if (currentMode == "Finished Goods")
                 {
                             <th>Model Name</th>
@@ -42,6 +41,7 @@ else
                 }
                 else
                 {
+                            <th>Item Part</th>
                             <th>Code Part</th>
                 }
                     <th>Quantity</th>
@@ -61,7 +61,6 @@ else
                         <tr id="row-@item.IdentificationNo">
                             <td>@item.IdentificationNo</td>
                             <td>@item.ProjectName</td>
-                            <td>@item.ItemPart</td>
                     @if (currentMode == "Finished Goods")
                     {
                                     <td>@item.ModelName</td>
@@ -69,6 +68,7 @@ else
                     }
                     else
                     {
+                                    <td>@item.ItemPart</td>
                                     <td>@item.CodePart</td>
                     }
                             <td>@item.Quantity</td>

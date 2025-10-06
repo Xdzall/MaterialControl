@@ -34,5 +34,8 @@ namespace Material_Control.Models
         public string SP_Number { get; set; }
 
         public string ProjectName { get; set; }
+
+        [NotMapped]
+        public string? Borrower { get; set; }
     }
 }

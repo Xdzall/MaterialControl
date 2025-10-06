@@ -32,5 +32,7 @@ namespace Material_Control.Models
         public string RequestType { get; set; }
 
         public string ProjectName { get; set; }
+
+        public string? Borrower { get; set; }
     }
 }

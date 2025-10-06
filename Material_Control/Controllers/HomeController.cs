@@ -49,6 +49,7 @@ public class HomeController : Controller
                         CreatedAt = p.CreatedAt,
                         PIC = p.PIC,
                         Status = p.Status,
+                        Borrower = p.Borrower,
                         RequestType = p.RequestType
                     }).ToList();
                 break;
@@ -67,6 +68,7 @@ public class HomeController : Controller
                         CreatedAt = m.CreatedAt,
                         PIC = m.PIC,
                         Status = m.Status,
+                        Borrower = m.Borrower,
                         RequestType = m.RequestType
                     }).ToList();
                 break;
@@ -75,9 +77,8 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    public IActionResult Create(string mode, string id) // Tambahkan parameter 'id'
+    public IActionResult Create(string mode, string id)
     {
-        // Logika untuk mengingat mode terakhir (tetap sama)
         if (!string.IsNullOrEmpty(mode))
         {
             HttpContext.Session.SetString("CurrentMode", mode);
@@ -92,13 +93,56 @@ public class HomeController : Controller
         var year = now.ToString("yy");
         var month = now.ToString("MM");
         string kodeTengah;
-        int countThisMonth;
+        int nextCount = 1; // Default
 
-        if (mode == "Finished Goods") { kodeTengah = "FG"; countThisMonth = _context.InventoryItems.Count(i => i.CreatedAt.Month == now.Month && i.CreatedAt.Year == now.Year) + 1; }
-        else if (mode == "Parts") { kodeTengah = "P"; countThisMonth = _context.Parts.Count(p => p.CreatedAt.Month == now.Month && p.CreatedAt.Year == now.Year) + 1; }
-        else { kodeTengah = "M"; countThisMonth = _context.Materials.Count(m => m.CreatedAt.Month == now.Month && m.CreatedAt.Year == now.Year) + 1; }
+        if (mode == "Finished Goods")
+        {
+            kodeTengah = "FG";
+            var lastItem = _context.InventoryItems
+                .Where(i => i.CreatedAt.Year == now.Year && i.CreatedAt.Month == now.Month)
+                .OrderByDescending(i => i.IdentificationNo)
+                .FirstOrDefault();
 
-        var formattedCount = countThisMonth.ToString("D4");
+            if (lastItem != null)
+            {
+                // 4 karakter terakhir (nomor urut) dan tambah 1
+                string lastSequence = lastItem.IdentificationNo.Substring(lastItem.IdentificationNo.Length - 4);
+                int.TryParse(lastSequence, out int lastCount);
+                nextCount = lastCount + 1;
+            }
+        }
+        else if (mode == "Parts")
+        {
+            kodeTengah = "P";
+            var lastItem = _context.Parts
+                .Where(p => p.CreatedAt.Year == now.Year && p.CreatedAt.Month == now.Month)
+                .OrderByDescending(p => p.IdentificationNo)
+                .FirstOrDefault();
+
+            if (lastItem != null)
+            {
+                string lastSequence = lastItem.IdentificationNo.Substring(lastItem.IdentificationNo.Length - 4);
+                int.TryParse(lastSequence, out int lastCount);
+                nextCount = lastCount + 1;
+            }
+        }
+        else
+        {
+            kodeTengah = "M";
+            var lastItem = _context.Materials
+                .Where(m => m.CreatedAt.Year == now.Year && m.CreatedAt.Month == now.Month)
+                .OrderByDescending(m => m.IdentificationNo)
+                .FirstOrDefault();
+
+            if (lastItem != null)
+            {
+                string lastSequence = lastItem.IdentificationNo.Substring(lastItem.IdentificationNo.Length - 4);
+                int.TryParse(lastSequence, out int lastCount);
+                nextCount = lastCount + 1;
+            }
+        }
+
+        var formattedCount = nextCount.ToString("D4");
         var generatedId = $"{year}{month}{kodeTengah}{formattedCount}";
 
         var username = HttpContext.Session.GetString("Username");
@@ -111,7 +155,6 @@ public class HomeController : Controller
             }
         }
 
-        // Gunakan ID dari URL jika ada, jika tidak, gunakan ID yang baru dibuat
         var model = new PendingApproval { IdentificationNo = !string.IsNullOrEmpty(id) ? id : generatedId };
         return View(model);
     }
@@ -130,12 +173,66 @@ public class HomeController : Controller
 
         if (isUpdateOperation)
         {
-            // --- LOGIKA UNTUK MEMPERBARUI DATA ASLI ---
-            if (item.RequestType == "IN")
+            if (item.RequestType == "Borrowing")
             {
-                ModelState.AddModelError("", "Cannot create an 'IN' transaction for an existing item. Please use OUT or SCRAP.");
+                if (string.IsNullOrEmpty(item.Borrower))
+                {
+                    ModelState.AddModelError("Borrower", "Borrower name is required.");
+                }
+                else
+                {
+                    if (mode == "Finished Goods" && existingItemInInventory != null)
+                    {
+                        existingItemInInventory.RequestType = item.RequestType;
+                        existingItemInInventory.StorageLocation = item.StorageLocation;
+                        existingItemInInventory.Purpose = item.Purpose;
+                        existingItemInInventory.Borrower = item.Borrower;
+                    }
+                    else if (mode == "Parts" && existingItemInParts != null)
+                    {
+                        existingItemInParts.RequestType = item.RequestType;
+                        existingItemInParts.StorageLocation = item.StorageLocation;
+                        existingItemInParts.Purpose = item.Purpose;
+                        existingItemInParts.Borrower = item.Borrower;
+                    }
+                    else if (mode == "Materials" && existingItemInMaterials != null)
+                    {
+                        existingItemInMaterials.RequestType = item.RequestType;
+                        existingItemInMaterials.StorageLocation = item.StorageLocation;
+                        existingItemInMaterials.Purpose = item.Purpose;
+                        existingItemInMaterials.Borrower = item.Borrower;
+                    }
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", new { mode });
+                }
             }
-            else
+            else if (item.RequestType == "IN")
+            {
+                if (mode == "Finished Goods" && existingItemInInventory != null && existingItemInInventory.RequestType == "Borrowing")
+                {
+                    existingItemInInventory.RequestType = "IN";
+                    existingItemInInventory.StorageLocation = item.StorageLocation;
+                    existingItemInInventory.Purpose = item.Purpose;
+                    existingItemInInventory.Borrower = null; // Hapus nama peminjam
+                }
+                else if (mode == "Parts" && existingItemInParts != null && existingItemInParts.RequestType == "Borrowing")
+                {
+                    existingItemInParts.RequestType = "IN";
+                    existingItemInParts.StorageLocation = item.StorageLocation;
+                    existingItemInParts.Purpose = item.Purpose;
+                    existingItemInParts.Borrower = null;
+                }
+                else if (mode == "Materials" && existingItemInMaterials != null && existingItemInMaterials.RequestType == "Borrowing")
+                {
+                    existingItemInMaterials.RequestType = "IN";
+                    existingItemInMaterials.StorageLocation = item.StorageLocation;
+                    existingItemInMaterials.Purpose = item.Purpose;
+                    existingItemInMaterials.Borrower = null;
+                }
+                _context.SaveChanges();
+                return RedirectToAction("Index", new { mode });
+            }
+            else if (item.RequestType == "OUT" || item.RequestType == "SCRAP")
             {
                 var newStatus = "Pending at Admin";
 
@@ -170,9 +267,7 @@ public class HomeController : Controller
         }
         else
         {
-            // --- LOGIKA UNTUK MEMBUAT ITEM BARU (LOOPING QUANTITY) ---
             ModelState.Clear();
-            // ... (validasi manual untuk item baru)
             if (string.IsNullOrEmpty(item.ProjectName)) ModelState.AddModelError("ProjectName", "The Project Name field is required.");
             if (item.Quantity <= 0) ModelState.AddModelError("Quantity", "Quantity must be greater than 0.");
             if (string.IsNullOrEmpty(item.StorageLocation)) ModelState.AddModelError("StorageLocation", "The Storage Location field is required.");
@@ -184,9 +279,8 @@ public class HomeController : Controller
                 if (string.IsNullOrEmpty(item.SP_Number))
                     ModelState.AddModelError("SP_Number", "The SP Number field is required.");
             }
-            else // Untuk Parts dan Materials
+            else
             {
-                // ItemPart sekarang hanya wajib untuk mode ini
                 if (string.IsNullOrEmpty(item.ItemPart))
                     ModelState.AddModelError("ItemPart", "The Item Part field is required.");
                 if (string.IsNullOrEmpty(item.CodePart))
@@ -244,7 +338,6 @@ public class HomeController : Controller
             }
         }
 
-        // Jika ada error validasi di salah satu alur, kembali ke view
         ViewBag.Mode = mode;
         var currentUsername = HttpContext.Session.GetString("Username");
         if (!string.IsNullOrEmpty(currentUsername))
@@ -280,7 +373,7 @@ public class HomeController : Controller
             if (mode == "Finished Goods")
             {
                 var query = _context.PendingApproval.AsQueryable();
-                // PERBAIKAN: Jika bukan Staff, filter status. Jika Staff, tampilkan semua.
+                // Jika bukan Staff, filter status. Jika Staff, tampilkan semua.
                 if (userRole != "Staff") query = query.Where(x => x.Status == statusFilter);
                 data.AddRange(query);
             }
@@ -335,37 +428,70 @@ public class HomeController : Controller
                           "";
 
         object itemData = null;
-        bool isActionable = false;
 
         switch (itemType)
         {
             case "Finished Goods":
-                // PERBAIKAN: Cari item yang statusnya BUKAN 'Rejected'
                 var fgItem = _context.InventoryItems.FirstOrDefault(x => x.IdentificationNo == id && x.Status != "Rejected");
                 if (fgItem != null)
                 {
-                    isActionable = fgItem.Status == "Approved" && fgItem.RequestType == "IN";
-                    itemData = new { identificationNo = fgItem.IdentificationNo, projectName = fgItem.ProjectName, itemPart = "", modelName = fgItem.ModelName, spNumber = fgItem.SP_Number, quantity = fgItem.Quantity, storageLocation = fgItem.StorageLocation, purpose = fgItem.Purpose, pic = fgItem.PIC, isActionable };
+                    itemData = new
+                    {
+                        identificationNo = fgItem.IdentificationNo,
+                        projectName = fgItem.ProjectName,
+                        itemPart = "",
+                        modelName = fgItem.ModelName,
+                        spNumber = fgItem.SP_Number,
+                        quantity = fgItem.Quantity,
+                        storageLocation = fgItem.StorageLocation,
+                        purpose = fgItem.Purpose,
+                        pic = fgItem.PIC,
+                        isActionable = (fgItem.Status == "Approved"), 
+                        requestType = fgItem.RequestType,
+                        borrower = fgItem.Borrower
+                    };
                 }
                 break;
 
             case "Parts":
-                // PERBAIKAN: Cari item yang statusnya BUKAN 'Rejected'
                 var partItem = _context.Parts.FirstOrDefault(x => x.IdentificationNo == id && x.Status != "Rejected");
                 if (partItem != null)
                 {
-                    isActionable = partItem.Status == "Approved" && partItem.RequestType == "IN";
-                    itemData = new { identificationNo = partItem.IdentificationNo, projectName = partItem.ProjectName, itemPart = partItem.ItemPart, codePart = partItem.CodePart, quantity = partItem.Quantity, storageLocation = partItem.StorageLocation, purpose = partItem.Purpose, pic = partItem.PIC, isActionable };
+                    itemData = new
+                    {
+                        identificationNo = partItem.IdentificationNo,
+                        projectName = partItem.ProjectName,
+                        itemPart = partItem.ItemPart,
+                        codePart = partItem.CodePart,
+                        quantity = partItem.Quantity,
+                        storageLocation = partItem.StorageLocation,
+                        purpose = partItem.Purpose,
+                        pic = partItem.PIC,
+                        isActionable = (partItem.Status == "Approved"),
+                        requestType = partItem.RequestType,
+                        borrower = partItem.Borrower
+                    };
                 }
                 break;
 
             case "Materials":
-                // PERBAIKAN: Cari item yang statusnya BUKAN 'Rejected'
                 var matItem = _context.Materials.FirstOrDefault(x => x.IdentificationNo == id && x.Status != "Rejected");
                 if (matItem != null)
                 {
-                    isActionable = matItem.Status == "Approved" && matItem.RequestType == "IN";
-                    itemData = new { identificationNo = matItem.IdentificationNo, projectName = matItem.ProjectName, itemPart = matItem.ItemPart, codePart = matItem.CodePart, quantity = matItem.Quantity, storageLocation = matItem.StorageLocation, purpose = matItem.Purpose, pic = matItem.PIC, isActionable };
+                    itemData = new
+                    {
+                        identificationNo = matItem.IdentificationNo,
+                        projectName = matItem.ProjectName,
+                        itemPart = matItem.ItemPart,
+                        codePart = matItem.CodePart,
+                        quantity = matItem.Quantity,
+                        storageLocation = matItem.StorageLocation,
+                        purpose = matItem.Purpose,
+                        pic = matItem.PIC,
+                        isActionable = (matItem.Status == "Approved"),
+                        requestType = matItem.RequestType,
+                        borrower = matItem.Borrower
+                    };
                 }
                 break;
         }
@@ -385,7 +511,6 @@ public class HomeController : Controller
         if (string.IsNullOrWhiteSpace(id))
             return BadRequest("Invalid ID");
 
-        // Logika hapus sekarang menargetkan tabel utama
         if (mode == "Finished Goods")
         {
             var item = _context.InventoryItems.Find(id);
