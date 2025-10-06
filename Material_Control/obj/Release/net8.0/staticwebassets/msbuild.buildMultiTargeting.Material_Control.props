@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Material_Control.props" />
+</Project>

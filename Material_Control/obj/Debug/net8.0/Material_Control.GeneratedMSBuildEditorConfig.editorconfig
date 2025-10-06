@@ -9,65 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Material_Control
 build_property.RootNamespace = Material_Control
-build_property.ProjectDir = C:\Kuliah\Belajar C Sharp\Material_Control\Material_Control\
+build_property.ProjectDir = C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Kuliah\Belajar C Sharp\Material_Control\Material_Control
+build_property.MSBuildProjectDirectory = C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Account/Login.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Documents/DeliveryProof.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Documents/DeliveryProof.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdW1lbnRzXERlbGl2ZXJ5UHJvb2YuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Home/Create.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Home/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Home/Index.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Home/Privacy.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Home/Select.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Home/Select.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWxlY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Home/Success.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Home/Success.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Inventory/Index.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Inventory/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Shared/Error.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/_ViewImports.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/_ViewStart.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Kuliah/Belajar C Sharp/Material_Control/Material_Control/Views/Shared/_Layout.cshtml]
+[C:/Users/mghaz/Magang Panasonic/Material_Control/Material_Control/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ckecunzd5q

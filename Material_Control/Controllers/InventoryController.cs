@@ -1,7 +1,5 @@
 ﻿using Material_Control.Data;
-using Material_Control.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Material_Control.Controllers
 {
@@ -17,177 +15,114 @@ namespace Material_Control.Controllers
         [HttpPost]
         public IActionResult Approve(string id, string mode)
         {
-            if (string.IsNullOrEmpty(mode)) mode = "FinishedGoods";
+            var userRole = HttpContext.Session.GetString("Role");
+            string currentStatus = GetItemStatus(id, mode);
 
-            Console.WriteLine($"Approve Requested. ID: '{id}' | Mode: '{mode}'");
-
-            try 
+            if (userRole == "Admin" && currentStatus == "Pending at Admin")
             {
-                var item = _context.PendingApproval.FirstOrDefault(x => x.IdentificationNo == id);
-                if (item == null)
-                {
-                    return Json(new { success = false, message = "Item not found." });
-                }
-
-                // Debug information
-                string originalStatus = item.Status;
-                Console.WriteLine($"Original Status: '{originalStatus}'");
-
-                // Get user role from session
-                var userRole = HttpContext.Session.GetString("Role");
-                Console.WriteLine($"Role from session: '{userRole}'");
-
-                // Check user roles either from session or claims
-                bool isAdmin = userRole == "Admin" || User.IsInRole("Admin");
-                bool isSuperAdmin = userRole == "Super Admin" || User.IsInRole("Super Admin");
-        
-                Console.WriteLine($"Is Admin: {isAdmin}, Is Super Admin: {isSuperAdmin}");
-                Console.WriteLine($"Current item status: '{item.Status?.Trim()}'");
-
-                // Process based on role and current status
-                if (isAdmin && (item.Status?.Trim() == "Pending at Admin" || item.Status?.Trim() == "Pending"))
-                {
-                    // Update status
-                    item.Status = "Pending at Super Admin";
-                    Console.WriteLine("Item status changed to 'Pending at Super Admin'");
-            
-                    _context.Update(item);
-                    int rowsAffected = _context.SaveChanges();
-                    Console.WriteLine($"SaveChanges executed. Rows affected: {rowsAffected}");
-            
-                    return Json(new { 
-                        success = true, 
-                        message = "Item forwarded to Super Admin for final approval.", 
-                        newStatus = item.Status,
-                        dbUpdated = rowsAffected > 0
-                    });
-                }
-                else if (isSuperAdmin && item.Status?.Trim() == "Pending at Super Admin")
-                {
-                    using (var transaction = _context.Database.BeginTransaction())
-                    {
-                        try
-                        {
-                            item.Status = "Approved";
-
-                            if (mode == "FinishedGoods")
-                            {
-                                _context.InventoryItems.Add(new InventoryItemModel
-                                {
-                                    IdentificationNo = item.IdentificationNo,
-                                    ItemPart = item.ItemPart,
-                                    CodePart = item.CodePart,
-                                    Quantity = item.Quantity,
-                                    StorageLocation = item.StorageLocation,
-                                    Purpose = item.Purpose,
-                                    PIC = item.PIC,
-                                    CreatedAt = item.CreatedAt,
-                                    Status = item.Status,
-                                    RequestType = item.RequestType
-                                });
-                            }
-                            else if (mode == "Parts")
-                            {
-                                _context.Parts.Add(new PartModel
-                                {
-                                    IdentificationNo = item.IdentificationNo,
-                                    ItemPart = item.ItemPart,
-                                    CodePart = item.CodePart,
-                                    Quantity = item.Quantity,
-                                    StorageLocation = item.StorageLocation,
-                                    Purpose = item.Purpose,
-                                    PIC = item.PIC,
-                                    CreatedAt = item.CreatedAt,
-                                    Status = item.Status,
-                                    RequestType = item.RequestType
-                                });
-                            }
-                            else if (mode == "Materials")
-                            {
-                                _context.Materials.Add(new MaterialModel
-                                {
-                                    IdentificationNo = item.IdentificationNo,
-                                    ItemPart = item.ItemPart,
-                                    CodePart = item.CodePart,
-                                    Quantity = item.Quantity,
-                                    StorageLocation = item.StorageLocation,
-                                    Purpose = item.Purpose,
-                                    PIC = item.PIC,
-                                    CreatedAt = item.CreatedAt,
-                                    Status = item.Status,
-                                    RequestType = item.RequestType
-                                });
-                            }
-
-                            _context.Update(item);
-                            _context.SaveChanges();
-
-                            _context.PendingApproval.Remove(item);
-                            int rowsAffected = _context.SaveChanges();
-                    
-                            transaction.Commit();
-                    
-                            Console.WriteLine($"Transaction committed. Rows affected: {rowsAffected}");
-                    
-                            return Json(new { 
-                                success = true, 
-                                message = "Item approved successfully and moved to inventory.", 
-                                newStatus = "Approved",
-                                dbUpdated = rowsAffected > 0
-                            });
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            Console.WriteLine($"Transaction error: {ex.Message}");
-                            return Json(new { success = false, message = $"Database error: {ex.Message}" });
-                        }
-                    }
-                }
-                else
-                {
-                    return Json(new
-                    {
-                        success = false,
-                        message = $"This item cannot be approved at this stage. Current status: {item.Status}, Your role: {userRole}"
-                    });
-                }
+                UpdatePendingStatus(id, "Pending at Super Admin", mode);
+                return Json(new { success = true, message = "Forwarded to Super Admin.", newStatus = "Pending at Super Admin" });
             }
-            catch (Exception ex)
+            else if (userRole == "Super Admin" && currentStatus == "Pending at Super Admin")
             {
-                _context.SaveChanges();
-                Console.WriteLine($"Exception in Approve action: {ex.Message}");
-                Console.WriteLine($"Stack trace: {ex.StackTrace}");
-                return Json(new { success = false, message = $"Server error: {ex.Message}" });
+                UpdateItemStatusInMainTable(id, "Approved", mode);
+                RemoveFromPending(id, mode);
+                return Json(new { success = true, message = "Item approved.", newStatus = "Approved" });
             }
+
+            return Json(new { success = false, message = "Authorization failed or item in wrong state." });
         }
-
 
         [HttpPost]
         public IActionResult Reject(string id, string mode)
         {
-            var targetItem = _context.PendingApproval.FirstOrDefault(x => x.IdentificationNo == id);
+            var userRole = HttpContext.Session.GetString("Role");
+            string currentStatus = GetItemStatus(id, mode);
 
-            if (targetItem != null)
+            if (string.IsNullOrEmpty(currentStatus))
             {
-                targetItem.Status = "Rejected";
-                _context.SaveChanges();
-
-                return Json(new { success = true, message = "Item rejected successfully.", newStatus = targetItem.Status });
+                return Json(new { success = false, message = "Item not found in pending list." });
             }
 
-            return Json(new { success = false, message = "Item not found." });
+            bool canReject = (userRole == "Admin" && currentStatus == "Pending at Admin") ||
+                             (userRole == "Super Admin" && currentStatus == "Pending at Super Admin");
+
+            if (canReject)
+            {
+                UpdateItemStatusInMainTable(id, "Rejected", mode);
+                RemoveFromPending(id, mode);
+                return Json(new { success = true, message = "Item rejected.", newStatus = "Rejected" });
+            }
+
+            return Json(new { success = false, message = "You are not authorized to reject this item." });
         }
 
-        public IActionResult PendingApproval(string mode = "FinishedGoods")
+        private string GetItemStatus(string id, string mode)
         {
-            var items = _context.PendingApproval
-                .Where(x => x.RequestType == mode && x.Status != "Rejected" && x.Status != "Approved")
-                .ToList();
+            return mode switch
+            {
+                "Finished Goods" => _context.PendingApproval.Find(id)?.Status,
+                "Parts" => _context.PendingApprovalParts.Find(id)?.Status,
+                "Materials" => _context.PendingApprovalMaterials.Find(id)?.Status,
+                _ => null
+            };
+        }
 
-            ViewBag.Mode = mode;
+        private void UpdatePendingStatus(string id, string newStatus, string mode)
+        {
+            switch (mode)
+            {
+                case "Finished Goods":
+                    _context.PendingApproval.Find(id).Status = newStatus;
+                    break;
+                case "Parts":
+                    _context.PendingApprovalParts.Find(id).Status = newStatus;
+                    break;
+                case "Materials":
+                    _context.PendingApprovalMaterials.Find(id).Status = newStatus;
+                    break;
+            }
+            _context.SaveChanges();
+        }
 
-            return View(items);
+        private void RemoveFromPending(string id, string mode)
+        {
+            switch (mode)
+            {
+                case "Finished Goods":
+                    var fgItem = _context.PendingApproval.Find(id);
+                    if (fgItem != null) _context.PendingApproval.Remove(fgItem);
+                    break;
+                case "Parts":
+                    var partItem = _context.PendingApprovalParts.Find(id);
+                    if (partItem != null) _context.PendingApprovalParts.Remove(partItem);
+                    break;
+                case "Materials":
+                    var matItem = _context.PendingApprovalMaterials.Find(id);
+                    if (matItem != null) _context.PendingApprovalMaterials.Remove(matItem);
+                    break;
+            }
+            _context.SaveChanges();
+        }
+
+        private void UpdateItemStatusInMainTable(string id, string status, string mode)
+        {
+            if (mode == "Finished Goods")
+            {
+                var item = _context.InventoryItems.Find(id);
+                if (item != null) item.Status = status;
+            }
+            else if (mode == "Parts")
+            {
+                var item = _context.Parts.Find(id);
+                if (item != null) item.Status = status;
+            }
+            else if (mode == "Materials")
+            {
+                var item = _context.Materials.Find(id);
+                if (item != null) item.Status = status;
+            }
+            _context.SaveChanges();
         }
     }
 }

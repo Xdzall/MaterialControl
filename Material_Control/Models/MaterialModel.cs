@@ -30,5 +30,7 @@ namespace Material_Control.Models
         public string Status { get; set; }
 
         public string RequestType { get; set; }
+
+        public string ProjectName { get; set; }
     }
 }

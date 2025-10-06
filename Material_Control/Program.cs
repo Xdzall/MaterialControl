@@ -8,6 +8,8 @@ using DinkToPdf.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpContextAccessor();
+
 QuestPDF.Settings.License = LicenseType.Community;
 
 ;

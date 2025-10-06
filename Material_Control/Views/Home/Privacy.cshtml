@@ -1,20 +1,22 @@
 ﻿@model List<Material_Control.Models.PendingApproval>
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Pending Approval";
-    var currentMode = Context.Request.Query["mode"].ToString() ?? "FinishedGoods";
+    var currentMode = ViewBag.Mode ?? "Finished Goods"; // Menggunakan ViewBag.Mode
+    var userRole = HttpContextAccessor.HttpContext.Session.GetString("Role");
 }
 
 <h1>@ViewData["Title"]</h1>
 
 <div class="d-flex justify-content-end gap-3 mb-3">
     <div style="width: 200px;">
+        <label for="filterDate" class="form-label">Filter by Date</label>
         <input type="date" id="filterDate" class="form-control" />
     </div>
     <div style="width: 200px;">
+        <label class="form-label">Select Category</label>
         <select class="form-select" onchange="location = this.value;">
-            <option disabled selected>Select Category</option>
-            <option value="@Url.Action("Privacy", "Home", new { mode = "FinishedGoods" })" selected="@(currentMode == "FinishedGoods")">Finished Goods</option>
+            <option value="@Url.Action("Privacy", "Home", new { mode = "Finished Goods" })" selected="@(currentMode == "Finished Goods")">Finished Goods</option>
             <option value="@Url.Action("Privacy", "Home", new { mode = "Parts" })" selected="@(currentMode == "Parts")">Parts</option>
             <option value="@Url.Action("Privacy", "Home", new { mode = "Materials" })" selected="@(currentMode == "Materials")">Materials</option>
         </select>
@@ -23,92 +25,140 @@
 
 @if (Model == null || !Model.Any())
 {
-    <p>No data available for approval.</p>
+        <p>No data available for approval.</p>
 }
 else
 {
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th>Identification No</th>
-                <th>Item Part</th>
-                <th>Code Part</th>
-                <th>Quantity</th>
-                <th>Storage Location</th>
-                <th>Purpose</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>PIC</th>
-                <th>Status</th>
-                <th>Request Type</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Identification No</th>
+                    <th>Project Name</th>
+                    <th>Item Part</th>
+                @if (currentMode == "Finished Goods")
+                {
+                            <th>Model Name</th>
+                            <th>SP_Number</th>
+                }
+                else
+                {
+                            <th>Code Part</th>
+                }
+                    <th>Quantity</th>
+                    <th>Storage Location</th>
+                    <th>Purpose</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>PIC</th>
+                    <th>Status</th>
+                    <th>Request Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach (var item in Model)
             {
-                <tr id="row-@item.IdentificationNo">
-                    <td>@item.IdentificationNo</td>
-                    <td>@item.ItemPart</td>
-                    <td>@item.CodePart</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.StorageLocation</td>
-                    <td>@item.Purpose</td>
-                    <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
-                    <td>@item.CreatedAt.ToString("HH:mm:ss")</td>
-                    <td>@item.PIC</td>
-                    <td id="status-@item.IdentificationNo">@item.Status</td>
-                    <td>@item.RequestType</td>
-                    <td>
-                        <button class="btn btn-success btn-sm"
-                                onclick="approveItem('@item.IdentificationNo')"
-                        @(item.Status == "Approved" ? "disabled" : "")>
-                            Approve
-                        </button>
-                        <button class="btn btn-danger btn-sm"
-                                onclick="rejectItem('@item.IdentificationNo')">
-                            Reject
-                        </button>
-                    </td>
-                </tr>
+                        <tr id="row-@item.IdentificationNo">
+                            <td>@item.IdentificationNo</td>
+                            <td>@item.ProjectName</td>
+                            <td>@item.ItemPart</td>
+                    @if (currentMode == "Finished Goods")
+                    {
+                                    <td>@item.ModelName</td>
+                                    <td>@item.SP_Number</td>
+                    }
+                    else
+                    {
+                                    <td>@item.CodePart</td>
+                    }
+                            <td>@item.Quantity</td>
+                            <td>@item.StorageLocation</td>
+                            <td>@item.Purpose</td>
+                            <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+                            <td>@item.CreatedAt.ToString("HH:mm:ss")</td>
+                            <td>@item.PIC</td>
+                            <td id="status-@item.IdentificationNo">@item.Status</td>
+                            <td>@item.RequestType</td>
+                            <td>
+                        @{
+                            bool canApprove = (userRole == "Admin" && item.Status == "Pending at Admin") ||
+                                              (userRole == "Super Admin" && item.Status == "Pending at Super Admin");
+                            bool canReject = canApprove;
+                            bool isStaff = userRole == "Staff";
+                        }
+                                <button class="btn btn-success btn-sm"
+                                        onclick="approveItem('@item.IdentificationNo')"
+                        @(canApprove && !isStaff ? "" : "disabled")>
+                                    Approve
+                                </button>
+                                <button class="btn btn-danger btn-sm"
+                                        onclick="rejectItem('@item.IdentificationNo')"
+                        @(canReject && !isStaff ? "" : "disabled")>
+                                    Reject
+                                </button>
+                            </td>
+                        </tr>
             }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 }
 
 @section Scripts {
-    <script>
-        const mode = '@currentMode';
+        <script>
+            const mode = '@currentMode';
 
-                function approveItem(id) {
-            if (!confirm('Are you sure to approve this item?')) return;
+            function approveItem(id) {
+                if (!confirm('Are you sure to approve this item?')) return;
+                $.post('@Url.Action("Approve", "Inventory")', { id: id, mode: mode }, function (response) {
+                    if (response.success) {
+                        $('#status-' + id).text(response.newStatus);
+                        if (response.newStatus === 'Approved') {
+                            $('#row-' + id).fadeOut(500, function() { $(this).remove(); });
+                        } else {
+                            $('#row-' + id + ' button').prop('disabled', true);
+                        }
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                }).fail(function () {
+                    alert('Server error occurred while approving.');
+                });
+            }
 
-            $.post('@Url.Action("Approve", "Inventory")', { id: id, mode: mode }, function (response) {
-                if (response.success) {
-                    $('#status-' + id).text(response.newStatus);
-                    $('#row-' + id + ' button').prop('disabled', true);
-                    alert(response.message);
-                } else {
-                    alert(response.message);
-                }
-            }).fail(function () {
-                alert('Server error occurred while approving.');
+            function rejectItem(id) {
+                if (!confirm('Are you sure to reject this item?')) return;
+                $.post('@Url.Action("Reject", "Inventory")', { id: id, mode: mode }, function (response) {
+                    if (response.success) {
+                        $('#row-' + id).fadeOut(500, function() { $(this).remove(); });
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                }).fail(function () {
+                    alert('Server error occurred while rejecting.');
+                });
+            }
+
+            document.getElementById('filterDate').addEventListener('change', function () {
+                const selectedDate = this.value;
+                const rows = document.querySelectorAll('tbody tr');
+
+                // PERBAIKAN: Menentukan indeks kolom tanggal secara dinamis
+                const isFinishedGoods = mode === 'Finished Goods';
+                const dateCellIndex = isFinishedGoods ? 7 : 6;
+
+                rows.forEach(row => {
+                    // Menggunakan indeks yang benar
+                    const dateCell = row.cells[dateCellIndex].textContent.trim();
+                    const rowDate = new Date(dateCell).toISOString().split('T')[0];
+
+                    if (!selectedDate || rowDate === selectedDate) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
             });
-        }
-
-                document.getElementById('filterDate').addEventListener('change', function () {
-            const selectedDate = this.value;
-            const rows = document.querySelectorAll('tbody tr');
-
-            rows.forEach(row => {
-                const dateCell = row.cells[6].textContent.trim();
-                const rowDate = new Date(dateCell).toISOString().split('T')[0];
-                if (!selectedDate || rowDate === selectedDate) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
-    </script>
+        </script>
 }

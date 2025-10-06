@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;    
 using Material_Control.Models;
 
 namespace Material_Control.Data
@@ -16,5 +16,6 @@ namespace Material_Control.Data
         public DbSet<MaterialModel> Materials { get; set; }
         public DbSet<PendingApproval> PendingApproval { get; set; }
         public DbSet<PendingApprovalParts> PendingApprovalParts { get; set; }
+        public DbSet<PendingApprovalMaterials> PendingApprovalMaterials { get; set; }
     }
 }

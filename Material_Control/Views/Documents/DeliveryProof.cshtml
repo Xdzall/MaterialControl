@@ -1,7 +1,7 @@
 ﻿@model List<Material_Control.Models.InventoryItemModel>
 @{
     Layout = null;
-    int counter = 1;
+    var currentMode = ViewBag.Mode as string ?? "Finished Goods";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -9,36 +9,12 @@
     <meta charset="UTF-8" />
     <title>Bukti Penyerahan Barang</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-        }
-
-        .header-table, .info-table, .item-table, .ttd-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 10px;
-        }
-
-            .item-table th, .item-table td, .info-table th, .info-table td {
-                border: 1px solid black;
-                padding: 5px;
-                text-align: center;
-            }
-
-            .ttd-table td {
-                border: 1px solid black;
-                height: 50px;
-                text-align: center;
-            }
-
-        .no-border {
-            border: none !important;
-        }
-
-        .section-title {
-            font-weight: bold;
-        }
+        body { font-family: Arial, sans-serif; font-size: 12px; }
+        .header-table, .info-table, .item-table, .ttd-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        .item-table th, .item-table td, .info-table th, .info-table td { border: 1px solid black; padding: 5px; text-align: center; }
+        .ttd-table td { border: 1px solid black; height: 50px; text-align: center; }
+        .no-border { border: none !important; }
+        .section-title { font-weight: bold; }
     </style>
 </head>
 <body>
@@ -74,7 +50,6 @@
             <td>&nbsp;</td>
         </tr>
     </table>
-
     <table class="item-table">
         <thead>
             <tr>
@@ -90,22 +65,27 @@
             @for (int i = 0; i < 9; i++)
             {
                 var item = i < Model.Count ? Model[i] : null;
-                <tr>
-                    <td>@(i + 1)</td>
-                    <td>@(item?.ItemPart ?? "")</td>
-                    <td>@(item?.CodePart ?? "")</td>
-                    <td>@(item?.Quantity.ToString() ?? "")</td>
-                    <td>@(item != null ? "pcs" : "")</td>
-                    @if (i == 0)
+                    <tr>
+                        <td>@(i + 1)</td>
+                    @if (currentMode == "Finished Goods")
                     {
-                        <td rowspan="9" style="vertical-align: top;">NG sample for analysis</td>
+                                <td>@(item?.ModelName ?? "")</td>
+                                <td>@(item?.SP_Number ?? "")</td>
                     }
-                </tr>
+                    else // Untuk Parts dan Materials
+                    {
+                                <td>@(item?.ItemPart ?? "")</td>
+                                <td>@(item?.CodePart ?? "")</td>
+                    }
+                        <td>@(item?.Quantity.ToString() ?? "")</td>
+                        <td>@(item != null ? "pcs" : "")</td>
+                        <td>@(item != null ? $"{item.RequestType} - {item.Purpose}" : "")</td>
+                    </tr>
             }
         </tbody>
     </table>
 
-    <table class="ttd-table" style="margin-top: 10px;">
+        <table class="ttd-table" style="margin-top: 10px;">
         <tr>
             <td colspan="3" class="section-title">PT PMI - AIR CONDITIONER</td>
             <td colspan="3" class="section-title">TowaDenki</td>

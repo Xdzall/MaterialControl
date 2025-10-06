@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Material_Control.Models
 {
@@ -8,11 +9,15 @@ namespace Material_Control.Models
         [Key]
         public string IdentificationNo { get; set; }
 
+        [NotMapped]
         public string ItemPart { get; set; }
 
+        public string ModelName { get; set; }
+
+        [NotMapped]
         public string CodePart { get; set; }
 
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } // Kembalikan ke int
 
         public string StorageLocation { get; set; }
 
@@ -25,5 +30,9 @@ namespace Material_Control.Models
         public string Status { get; set; }
 
         public string RequestType { get; set; }
+
+        public string SP_Number { get; set; }
+
+        public string ProjectName { get; set; }
     }
 }

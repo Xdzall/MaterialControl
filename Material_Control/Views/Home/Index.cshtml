@@ -2,21 +2,29 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var currentMode = ViewBag.Mode ?? "Finished Goods";
 }
+<form id="antiForgeryForm" class="d-none">
+    @Html.AntiForgeryToken()
+</form>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="mb-0">Inventory Data</h2>
-    <a asp-action="Create" asp-route-mode="@ViewBag.Mode" class="btn btn-success">Add New Inventory Item</a>
+    <a asp-action="Create" asp-route-mode="@ViewBag.Mode" class="btn btn-success">Inventory Item</a>
 </div>
 
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-end gap-3 mb-3">
     <div style="width: 200px;">
-    <select class="form-select" onchange="location = this.value;">
-        <option selected disabled>Select Category</option>
-        <option value="@Url.Action("Index", new { mode = "Finished Goods" })">Finished Goods</option>
-        <option value="@Url.Action("Index", new { mode = "Parts" })">Parts</option>
-        <option value="@Url.Action("Index", new { mode = "Materials" })">Materials</option>
-    </select>
+        <label for="filterDate" class="form-label">Filter by Date</label>
+        <input type="date" id="filterDate" class="form-control" />
+    </div>
+    <div style="width: 200px;">
+        <label class="form-label">Select Category</label>
+        <select class="form-select" onchange="location = this.value;">
+            <option value="@Url.Action("Index", new { mode = "Finished Goods" })" selected="@(currentMode == "Finished Goods")">Finished Goods</option>
+            <option value="@Url.Action("Index", new { mode = "Parts" })" selected="@(currentMode == "Parts")">Parts</option>
+            <option value="@Url.Action("Index", new { mode = "Materials" })" selected="@(currentMode == "Materials")">Materials</option>
+        </select>
     </div>
 </div>
 
@@ -24,8 +32,20 @@
     <thead class="thead-dark">
         <tr>
             <th>Identification No</th>
-            <th>Item Part</th>
-            <th>Code Part</th>
+            <th>Project Name</th>
+            @if (ViewBag.Mode != "Finished Goods")
+            {
+                    <th>Item Part</th>
+            }
+            @if (ViewBag.Mode == "Finished Goods")
+            {
+                    <th>Model Name</th>
+                    <th>SP_Number</th>
+            }
+            else
+            {
+                    <th>Code Part</th>
+            }
             <th>Quantity</th>
             <th>Storage Location</th>
             <th>Purpose</th>
@@ -40,43 +60,175 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.IdentificationNo</td>
-                <td>@item.ItemPart</td>
-                <td>@item.CodePart</td>
-                <td>@item.Quantity</td>
-                <td>@item.StorageLocation</td>
-                <td>@item.Purpose</td>
-                <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
-                <td>@item.CreatedAt.ToString("HH:mm:ss")</td>
-                <td>@item.PIC</td>
-                <td>@item.Status</td>
-                <td>@item.RequestType</td>
-                <td>
-                    <button class="btn btn-success btn-sm" onclick="printQRCode('@item.IdentificationNo')">Print</button>
-                </td>
-            </tr>
+                <tr id="row-@item.IdentificationNo">
+                    <td>@item.IdentificationNo</td>
+                    <td>@item.ProjectName</td>
+                @if (ViewBag.Mode != "Finished Goods")
+                {
+                            <td>@item.ItemPart</td>
+                }
+                @if (ViewBag.Mode == "Finished Goods")
+                {
+                            <td>@item.ModelName</td>
+                            <td>@item.SP_Number</td>
+                }
+                else
+                {
+                            <td>@item.CodePart</td>
+                }
+                    <td>@item.Quantity</td>
+                    <td>@item.StorageLocation</td>
+                    <td>@item.Purpose</td>
+                    <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>@item.CreatedAt.ToString("HH:mm:ss")</td>
+                    <td>@item.PIC</td>
+                    <td>@item.Status</td>
+                    <td>@item.RequestType</td>
+                    <td>
+                    @if (item.Status == "Rejected")
+                    {
+                                <button class="btn btn-danger btn-sm" onclick="deleteItem('@item.IdentificationNo')">
+                                    Delete
+                                </button>
+                    }
+                    else // Jika status 'Approved'
+                    {
+                        @if (ViewBag.Mode == "Finished Goods")
+                        {
+                                        <button class="btn btn-success btn-sm" onclick="printQRCode('@item.IdentificationNo', '@item.ProjectName', '@item.ModelName', '@item.SP_Number', '@item.Quantity', '@item.StorageLocation', '@item.PIC')">Print QR Code</button>
+                        }
+                        else
+                        {
+                                        <button class="btn btn-success btn-sm" onclick="printQRCode('@item.IdentificationNo', '@item.ProjectName', '@item.ItemPart', '@item.CodePart', '@item.Quantity', '@item.StorageLocation', '@item.PIC')">Print QR Code</button>
+                        }
+
+                                <button class="btn btn-info btn-sm mt-1" 
+                                        onclick="downloadDeliveryProof('@item.IdentificationNo')" 
+                        @(item.RequestType == "IN" ? "disabled" : "")>
+                                    Download PDF
+                                </button>
+                    }
+                    </td>
+                </tr>
         }
     </tbody>
 </table>
 
-<script>
-    function printQRCode(id) {
-        const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent('https://localhost:7032/Home/Create?id=' + id)}&size=200`;
+@section Scripts {
+        <script>
+                function printQRCode(id, projectName, p1, p2, quantity, location, pic) {
+                const currentMode = '@currentMode';
+                let itemPartOrModel, codeOrSp;
 
-        const printSection = document.createElement("div");
-        printSection.style.textAlign = "center";
-        printSection.innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+                if (currentMode === 'Finished Goods') {
+                    itemPartOrModel = p1;
+                    codeOrSp = p2;      
+                } else {
+                    itemPartOrModel = p1; 
+                    codeOrSp = p2;   
+                }
 
-        const originalBody = document.body.innerHTML;
-        document.body.innerHTML = printSection.outerHTML;
+                const qrUrl = `/QrCode/Generate?id=${encodeURIComponent(id)}` +
+                              `&projectName=${encodeURIComponent(projectName)}` +
+                              `&itemPartOrModel=${encodeURIComponent(itemPartOrModel)}` +
+                              `&codeOrSp=${encodeURIComponent(codeOrSp)}` +
+                              `&quantity=${encodeURIComponent(quantity)}` +
+                              `&location=${encodeURIComponent(location)}` +
+                              `&pic=${encodeURIComponent(pic)}`;            
 
-        window.print();
+                const printSection = document.createElement("div");
+                printSection.style.textAlign = "center";
+                printSection.innerHTML = `<img src="${qrUrl}" alt="QR Code">`;
+                const originalBody = document.body.innerHTML;
+                document.body.innerHTML = printSection.outerHTML;
+                const qrImage = printSection.querySelector('img');
+                qrImage.onload = function() {
+                    window.print();
+                    window.onafterprint = function () {
+                        document.body.innerHTML = originalBody;
+                        location.reload(); 
+                    };
+                };
+                qrImage.onerror = function() {
+                    alert("Failed to load QR Code image.");
+                    document.body.innerHTML = originalBody;
+                };
+            }
 
-        window.onafterprint = function () {
-            document.body.innerHTML = originalBody;
-            location.reload(); 
-        };
-    }
-</script>
+            // ... (Fungsi downloadDeliveryProof dan filter tanggal tetap sama) ...
+            function downloadDeliveryProof(id) {
+                if (!id) {
+                    alert("Identification No is missing.");
+                    return;
+                }
 
+                fetch(`/Documents/DeliveryProof?id=${encodeURIComponent(id)}`)
+                    .then(response => {
+                        if (response.ok) {
+                            return response.blob();
+                        } else {
+                            return response.text().then(text => { throw new Error(text || 'File not found or error generating file.'); });
+                        }
+                    })
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = `DeliveryProof_${id}.pdf`;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    })
+                    .catch(error => {
+                        alert('Error downloading the file: ' + error.message);
+                    });
+            }
+
+            document.getElementById('filterDate').addEventListener('change', function () {
+                const selectedDate = this.value;
+                const rows = document.querySelectorAll('tbody tr');
+                const isFinishedGoods = '@currentMode' === 'Finished Goods';
+                const dateCellIndex = 9;
+
+                rows.forEach(row => {
+                    const dateCell = row.cells[dateCellIndex]?.textContent.trim();
+                    if (dateCell) {
+                        const rowDate = new Date(dateCell).toISOString().split('T')[0];
+                        if (!selectedDate || rowDate === selectedDate) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            });
+
+                        function deleteItem(id) {
+                if (confirm("Are you sure you want to permanently delete this item?")) {
+                    const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+                    const mode = '@currentMode';
+
+                    fetch(`/Home/Delete?id=${encodeURIComponent(id)}&mode=${encodeURIComponent(mode)}`, {
+                        method: 'POST',
+                        headers: {
+                            'RequestVerificationToken': token
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("Item successfully deleted.");
+                            document.getElementById('row-' + id).remove();
+                        } else {
+                            response.text().then(text => alert(`Error: ${text || 'Failed to delete item.'}`));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while deleting the item.');
+                    });
+                }
+            }
+        </script>
+}

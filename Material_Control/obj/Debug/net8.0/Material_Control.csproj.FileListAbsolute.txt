@@ -147,3 +147,301 @@ C:\Kuliah\Belajar C Sharp\Material_Control\Material_Control\bin\Debug\net8.0\Mic
 C:\Kuliah\Belajar C Sharp\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Kuliah\Belajar C Sharp\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
 C:\Kuliah\Belajar C Sharp\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Kuliah\Belajar C Sharp\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.sourcelink.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\appsettings.Development.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Black.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-BlackItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Bold.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-BoldItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraBold.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraBoldItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraLight.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraLightItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Italic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Light.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-LightItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Medium.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-MediumItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Regular.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-SemiBold.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-SemiBoldItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Thin.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ThinItalic.ttf
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\OFL.txt
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\appsettings.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.staticwebassets.runtime.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.exe
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.deps.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.runtimeconfig.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.pdb
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Azure.Core.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Azure.Identity.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\DinkToPdf.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\EPPlus.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\EPPlus.Interfaces.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Json.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\QuestPDF.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.ClientModel.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Formats.Asn1.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Memory.Data.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Runtime.Caching.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Text.Json.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libQuestPdfSkia.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libcrypto.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libjpeg.so.8
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libqpdf.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libQuestPdfSkia.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libcrypto.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libjpeg.so.8
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libqpdf.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libQuestPdfSkia.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libcrypto.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libjpeg.so.8
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libqpdf.so
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libQuestPdfSkia.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libcrypto.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libjpeg.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libqpdf.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libQuestPdfSkia.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libcrypto.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libjpeg.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libqpdf.dylib
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\QuestPdfSkia.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\libgcc_s_seh-1.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\libstdc++-6.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\libwinpthread-1.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\qpdf.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\QuestPdfSkia.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\libgcc_s_dw2-1.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\libstdc++-6.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\libwinpthread-1.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\qpdf.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.csproj.AssemblyReference.cache
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.AssemblyInfoInputs.cache
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.AssemblyInfo.cs
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.csproj.CoreCompileInputs.cache
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.MvcApplicationPartsAssemblyInfo.cache
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.RazorAssemblyInfo.cache
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.RazorAssemblyInfo.cs
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.sourcelink.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.build.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.development.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.Material_Control.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.build.Material_Control.props
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Material_Control.props
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Material_Control.props
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\scopedcss\bundle\Material_Control.styles.css
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\scopedcss\projectbundle\Material_Control.bundle.scp.css
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material.D495337D.Up2Date
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\refint\Material_Control.dll
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.pdb
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.genruntimeconfig.cache
+D:\Dava Rajif - PENS\Material_Control\Material_Control\obj\Debug\net8.0\ref\Material_Control.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.csproj.AssemblyReference.cache
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.AssemblyInfoInputs.cache
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.AssemblyInfo.cs
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.csproj.CoreCompileInputs.cache
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.RazorAssemblyInfo.cache
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.RazorAssemblyInfo.cs
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.sourcelink.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\appsettings.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.staticwebassets.runtime.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.staticwebassets.endpoints.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Black.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-BlackItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Bold.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-BoldItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraBold.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraBoldItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraLight.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ExtraLightItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Italic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Light.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-LightItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Medium.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-MediumItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Regular.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-SemiBold.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-SemiBoldItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-Thin.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\Lato-ThinItalic.ttf
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\LatoFont\OFL.txt
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.exe
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.deps.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.runtimeconfig.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Material_Control.pdb
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Azure.Core.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\DinkToPdf.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\EPPlus.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\EPPlus.Interfaces.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\QRCoder.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\QuestPDF.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.ClientModel.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Private.Windows.Core.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Formats.Asn1.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.IO.Pipelines.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Memory.Data.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Runtime.Caching.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libQuestPdfSkia.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libcrypto.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libjpeg.so.8
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-arm64\native\libqpdf.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libQuestPdfSkia.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libcrypto.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libjpeg.so.8
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libqpdf.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libQuestPdfSkia.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libcrypto.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libjpeg.so.8
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\linux-x64\native\libqpdf.so
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libQuestPdfSkia.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libcrypto.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libjpeg.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-arm64\native\libqpdf.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libQuestPdfSkia.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libcrypto.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libjpeg.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\osx-x64\native\libqpdf.dylib
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\QuestPdfSkia.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\libgcc_s_seh-1.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\libstdc++-6.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\libwinpthread-1.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x64\native\qpdf.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\QuestPdfSkia.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\libgcc_s_dw2-1.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\libstdc++-6.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\libwinpthread-1.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win-x86\native\qpdf.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\scopedcss\bundle\Material_Control.styles.css
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\scopedcss\projectbundle\Material_Control.bundle.scp.css
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.Material_Control.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.Material_Control.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.build.Material_Control.props
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Material_Control.props
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Material_Control.props
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material.D495337D.Up2Date
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\refint\Material_Control.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.pdb
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\Material_Control.genruntimeconfig.cache
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\obj\Debug\net8.0\ref\Material_Control.dll
+C:\Users\mghaz\Magang Panasonic\Material_Control\Material_Control\bin\Debug\net8.0\zxing.dll

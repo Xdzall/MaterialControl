@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Material_Control.Models
 {
@@ -7,11 +8,13 @@ namespace Material_Control.Models
         [Key]
         public string IdentificationNo { get; set; }
 
-        [Required]
+        [NotMapped]
         public string ItemPart { get; set; }
 
-        [Required]
-        public string CodePart { get; set; }
+        public string ModelName { get; set; }
+
+        [NotMapped] // Properti ini tidak akan dipetakan ke database
+        public string CodePart { get; set; } // Untuk Parts & Materials
 
         [Required]
         public int Quantity { get; set; }
@@ -30,6 +33,10 @@ namespace Material_Control.Models
         public string RequestType { get; set; }
 
         public string Status { get; set; }
+
+        public string SP_Number { get; set; }
+
+        public string ProjectName { get; set; }
 
     }
 }

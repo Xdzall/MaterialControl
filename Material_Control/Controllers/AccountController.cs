@@ -11,52 +11,42 @@ public class AccountController : Controller
         _context = context;
     }
 
-    // GET: Login Page
     [HttpGet]
     public IActionResult Login()
     {
         return View();
     }
 
-    // POST: Handle Login Attempt
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Login(string username, string password)
     {
-        // Retrieve the user from the database
         var user = _context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
         if (user != null)
         {
-            // Store user details in the session
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetString("Nama", user.Name);
-            HttpContext.Session.SetString("Role", user.Role); // Storing the role in the session
+            HttpContext.Session.SetString("Role", user.Role);
 
-            // Check user role and redirect accordingly
-            if (user.Role == "Admin")
+            // Langsung arahkan ke mode default "Finished Goods"
+            if (user.Role == "Admin" || user.Role == "Super Admin")//|| user.Role == "Staff"
             {
-                return RedirectToAction("Privacy", "Home"); // Redirect to Privacy page for Admin
-            }
-            else if (user.Role == "Super Admin")
-            {
-                return RedirectToAction("Privacy", "Home"); // Redirect to Privacy page for Super Admin
+                return RedirectToAction("Privacy", "Home", new { mode = "Finished Goods" });
             }
             else
             {
-                return RedirectToAction("Index", "Home"); // Redirect to a different page for other roles
+                return RedirectToAction("Index", "Home", new { mode = "Finished Goods" });
             }
         }
 
-        // If the login is unsuccessful
         ViewBag.ErrorMessage = "Invalid username or password.";
         return View();
     }
 
-    // Logout action
     public IActionResult Logout()
     {
-        HttpContext.Session.Clear(); // Clear the session
-        return RedirectToAction("Login", "Account"); // Redirect to the login page
+        HttpContext.Session.Clear();
+        return RedirectToAction("Login", "Account");
     }
 }
