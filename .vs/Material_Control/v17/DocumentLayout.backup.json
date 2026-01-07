@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|c:\\users\\mghaz\\magang panasonic\\material_control\\material_control\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|solutionrelative:material_control\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|c:\\users\\mghaz\\magang panasonic\\material_control\\material_control\\controllers\\qrcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|solutionrelative:material_control\\controllers\\qrcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|c:\\users\\mghaz\\magang panasonic\\material_control\\material_control\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|solutionrelative:material_control\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|c:\\users\\mghaz\\magang panasonic\\material_control\\material_control\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|solutionrelative:material_control\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8212C245-8006-45BA-9C36-85F3A3615370}|Material_Control\\Material_Control.csproj|c:\\users\\mghaz\\magang panasonic\\material_control\\material_control\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -62,20 +62,40 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Material_Control\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Material_Control\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAJkAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-06T02:12:48.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "QrCodeController.cs",
               "DocumentMoniker": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Controllers\\QrCodeController.cs",
               "RelativeDocumentMoniker": "Material_Control\\Controllers\\QrCodeController.cs",
-              "ToolTip": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Controllers\\QrCodeController.cs*",
-              "RelativeToolTip": "Material_Control\\Controllers\\QrCodeController.cs*",
-              "ViewState": "AgIAACoAAAAAAAAAAAAowD0AAAAbAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Controllers\\QrCodeController.cs",
+              "RelativeToolTip": "Material_Control\\Controllers\\QrCodeController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwDIAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T08:47:29.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T08:47:29.66Z"
             },
             {
               "$type": "Document",
@@ -87,12 +107,11 @@
               "RelativeToolTip": "Material_Control\\wwwroot\\css\\site.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-06T07:57:45.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T07:57:45.427Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Material_Control\\Views\\Shared\\_Layout.cshtml",
@@ -100,12 +119,11 @@
               "RelativeToolTip": "Material_Control\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-06T07:57:33.4Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T07:57:33.4Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Material_Control\\Views\\Account\\Login.cshtml",
@@ -113,16 +131,7 @@
               "RelativeToolTip": "Material_Control\\Views\\Account\\Login.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-06T06:55:32.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "WhenOpened": "2025-10-06T06:55:32.99Z"
             },
             {
               "$type": "Document",
@@ -134,12 +143,11 @@
               "RelativeToolTip": "Material_Control\\wwwroot\\css\\Login.css",
               "ViewState": "AgIAAD8AAAAAAAAAAAAAAFwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-10-06T06:58:02.891Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T06:58:02.891Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Home\\Privacy.cshtml",
               "RelativeDocumentMoniker": "Material_Control\\Views\\Home\\Privacy.cshtml",
@@ -147,8 +155,7 @@
               "RelativeToolTip": "Material_Control\\Views\\Home\\Privacy.cshtml",
               "ViewState": "AgIAAMQAAAAAAAAAAAAAANUAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-06T03:08:42.171Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T03:08:42.171Z"
             },
             {
               "$type": "Document",
@@ -160,8 +167,7 @@
               "RelativeToolTip": "Material_Control\\Models\\PendingApproval.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAmwCgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T02:22:12.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T02:22:12.575Z"
             },
             {
               "$type": "Document",
@@ -173,25 +179,11 @@
               "RelativeToolTip": "Material_Control\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAEsAAAAAAAAAAAAowF8AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T02:13:43.548Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T02:13:43.548Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Material_Control\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Material_Control\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAJsAAAAAAAAAAAArwJkAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-06T02:12:48.537Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\mghaz\\Magang Panasonic\\Material_Control\\Material_Control\\Views\\Home\\Create.cshtml",
               "RelativeDocumentMoniker": "Material_Control\\Views\\Home\\Create.cshtml",
@@ -199,8 +191,7 @@
               "RelativeToolTip": "Material_Control\\Views\\Home\\Create.cshtml",
               "ViewState": "AgIAAHIAAAAAAAAAAAAkwIQAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-06T02:07:29.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T02:07:29.259Z"
             },
             {
               "$type": "Document",
